@@ -90,6 +90,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\dp-library\DigitalPlatform.LibraryRestClient\DigitalPlatform.LibraryRestClient.csproj">
+      <Project>{c7c60a11-afc6-4cf2-898f-1f0e2d8d1fa0}</Project>
+      <Name>DigitalPlatform.LibraryRestClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\dp2analysis.service\dp2analysis.service.csproj">
       <Project>{31af5d94-7881-4298-949f-0abeb39416f3}</Project>
       <Name>dp2analysis.service</Name>

@@ -31,14 +31,17 @@ namespace dp2analysis.service
         // 构造函数
         private dp2analysisService()
         {
-
+            // 通道池对象
+            _channelPool = new LibraryChannelPool();
+            _channelPool.BeforeLogin -= new BeforeLoginEventHandle(_channelPool_BeforeLogin);
+            _channelPool.BeforeLogin += new BeforeLoginEventHandle(_channelPool_BeforeLogin);
         }
 
         #endregion
 
-        
+
         #region 按需登录
-        internal LibraryChannelPool _libraryChannelPool = new LibraryChannelPool();
+        internal LibraryChannelPool _channelPool = null;// new LibraryChannelPool();
 
         public string dp2ServerUrl { get; set; }
         public string dp2Username { get; set; }
@@ -59,10 +62,8 @@ namespace dp2analysis.service
 
         public void ReturnChannel(LibraryChannel channel)
         {
-            this._libraryChannelPool.ReturnChannel(channel);
+            this._channelPool.ReturnChannel(channel);
         }
-
-
 
         #endregion
     
@@ -74,12 +75,10 @@ namespace dp2analysis.service
         {
             error = "";
 
-            LibraryChannel channel = this._libraryChannelPool.GetChannel(serverUrl,
+            LibraryChannel channel = this._channelPool.GetChannel(serverUrl,
                 userName);
             try
             {
-
-
 
                 LoginResponse response = channel.Login(userName,
                 passord,
@@ -107,5 +106,19 @@ namespace dp2analysis.service
         }
 
         #endregion
+
+        public  LibraryChannel GetChannel()
+        {
+
+
+            LibraryChannel channel = this._channelPool.GetChannel(this.dp2ServerUrl, 
+                this.dp2Username);
+            //channel.Idle
+           // _channelList.Add(channel);
+           // // TODO: 检查数组是否溢出
+            return channel;
+        }
+
+
     }
 }

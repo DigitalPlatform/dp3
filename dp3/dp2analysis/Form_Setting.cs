@@ -68,6 +68,11 @@ namespace dp2analysis
             this.dp2ServerUrl = Properties.Settings.Default.dp2ServerUrl;
             this.dp2Username = Properties.Settings.Default.dp2Username;
             this.dp2Password = Properties.Settings.Default.dp2Password;
+
+            // 设上dp2analysisService实例上
+            dp2analysisService.Instance.dp2ServerUrl = this.dp2ServerUrl;
+            dp2analysisService.Instance.dp2Username = this.dp2Username;
+            dp2analysisService.Instance.dp2Password = this.dp2Password;
         }
 
         private void button_verify_Click(object sender, EventArgs e)
@@ -103,6 +108,13 @@ namespace dp2analysis
             Properties.Settings.Default.dp2Password = this.dp2Password;
 
             Properties.Settings.Default.Save();
+
+
+            // 设上dp2analysisService实例上
+            dp2analysisService.Instance.dp2ServerUrl = this.dp2ServerUrl;
+            dp2analysisService.Instance.dp2Username = this.dp2Username;
+            dp2analysisService.Instance.dp2Password = this.dp2Password;
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
