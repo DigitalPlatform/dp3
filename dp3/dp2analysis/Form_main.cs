@@ -139,22 +139,17 @@ namespace dp2analysis
             {
                 int nCount = 0;
                 ShowInfo("开始进行密集借书还书测试");
-
 //                Program.MainForm.OperHistory.AppendHtml("<div class='debug begin'>" + HttpUtility.HtmlEncode(DateTime.Now.ToLongTimeString())
 //+ " 开始进行密集借书还书测试</div>");
 
                 for (; ; )
                 {
                     Application.DoEvents();
-
                     if (_stop == true)
                         break;
 
                     //if (stop?.State != 0)
                     //    break;
-
-
-
 
                     long lRet = 0;
                     string strReaderXml = "";
