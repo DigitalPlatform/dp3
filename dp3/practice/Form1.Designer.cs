@@ -30,10 +30,10 @@
         {
             this.tabControl_main = new System.Windows.Forms.TabControl();
             this.tabPage_stop = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button_start = new System.Windows.Forms.Button();
-            this.button_stop = new System.Windows.Forms.Button();
             this.textBox_info = new System.Windows.Forms.TextBox();
+            this.button_stop = new System.Windows.Forms.Button();
+            this.button_start = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl_main.SuspendLayout();
             this.tabPage_stop.SuspendLayout();
             this.SuspendLayout();
@@ -62,36 +62,6 @@
             this.tabPage_stop.Text = "停止测试";
             this.tabPage_stop.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(830, 454);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // button_start
-            // 
-            this.button_start.Location = new System.Drawing.Point(8, 6);
-            this.button_start.Name = "button_start";
-            this.button_start.Size = new System.Drawing.Size(96, 30);
-            this.button_start.TabIndex = 0;
-            this.button_start.Text = "开始";
-            this.button_start.UseVisualStyleBackColor = true;
-            this.button_start.Click += new System.EventHandler(this.button_start_Click);
-            // 
-            // button_stop
-            // 
-            this.button_stop.Location = new System.Drawing.Point(110, 6);
-            this.button_stop.Name = "button_stop";
-            this.button_stop.Size = new System.Drawing.Size(96, 30);
-            this.button_stop.TabIndex = 1;
-            this.button_stop.Text = "停止";
-            this.button_stop.UseVisualStyleBackColor = true;
-            this.button_stop.Click += new System.EventHandler(this.button_stop_Click);
-            // 
             // textBox_info
             // 
             this.textBox_info.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -104,6 +74,36 @@
             this.textBox_info.Size = new System.Drawing.Size(305, 403);
             this.textBox_info.TabIndex = 2;
             // 
+            // button_stop
+            // 
+            this.button_stop.Location = new System.Drawing.Point(110, 6);
+            this.button_stop.Name = "button_stop";
+            this.button_stop.Size = new System.Drawing.Size(96, 30);
+            this.button_stop.TabIndex = 1;
+            this.button_stop.Text = "停止";
+            this.button_stop.UseVisualStyleBackColor = true;
+            this.button_stop.Click += new System.EventHandler(this.button_stop_Click);
+            // 
+            // button_start
+            // 
+            this.button_start.Location = new System.Drawing.Point(8, 6);
+            this.button_start.Name = "button_start";
+            this.button_start.Size = new System.Drawing.Size(96, 30);
+            this.button_start.TabIndex = 0;
+            this.button_start.Text = "开始";
+            this.button_start.UseVisualStyleBackColor = true;
+            this.button_start.Click += new System.EventHandler(this.button_start_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(830, 454);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -112,6 +112,7 @@
             this.Controls.Add(this.tabControl_main);
             this.Name = "Form1";
             this.Text = "练习窗";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.tabControl_main.ResumeLayout(false);
             this.tabPage_stop.ResumeLayout(false);
             this.tabPage_stop.PerformLayout();

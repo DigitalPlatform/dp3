@@ -18,20 +18,23 @@ namespace practice
             InitializeComponent();
         }
 
-        CancellationTokenSource _cancelTokenSource = new CancellationTokenSource();
+        // 名字以用途命名即可。TokenSource 这种类型名称可以不出现在名字中
+        CancellationTokenSource _cancel = new CancellationTokenSource();
 
         private void button_start_Click(object sender, EventArgs e)
         {
-            //Task.Run(() => dothing(this._cancelTokenSource.Token), this._cancelTokenSource.Token);
+            // 每次开头都重新 new 一个。这样避免受到上次遗留的 _cancel 对象的状态影响
+            this._cancel = new CancellationTokenSource();
+            this.textBox_info.Text = "";
 
             Task.Run(() =>
             {
-                dothing(this._cancelTokenSource.Token);
+                doSomething(this._cancel.Token);
             });
         }
 
         // 做事
-        void dothing(CancellationToken token)
+        void doSomething(CancellationToken token)
         {
             // 设置按置状态
             this.Invoke((Action)(() =>
@@ -40,10 +43,12 @@ namespace practice
             try
             {
                 int i = 0;
-                for (; ; )
+                while (token.IsCancellationRequested == false)
                 {
-                    if (token.IsCancellationRequested)
-                        break;
+                    /*
+                    // 中断也可以用
+                    token.ThrowIfCancellationRequested();
+                    */
 
                     i++;
 
@@ -57,7 +62,7 @@ namespace practice
             {
                 // 设置按置状态
                 this.Invoke((Action)(() =>
-                    EnableControls(false)
+                    EnableControls(true)
                     ));
             }
         }
@@ -73,9 +78,13 @@ namespace practice
         private void button_stop_Click(object sender, EventArgs e)
         {
             // 停止
-            this._cancelTokenSource.Cancel();
+            this._cancel.Cancel();
         }
 
-
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 窗口关闭前让循环退出
+            this._cancel.Cancel();
+        }
     }
 }
