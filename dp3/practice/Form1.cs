@@ -22,6 +22,8 @@ namespace practice
 
         private void button_start_Click(object sender, EventArgs e)
         {
+            //Task.Run(() => dothing(this._cancelTokenSource.Token), this._cancelTokenSource.Token);
+
             Task.Run(() =>
             {
                 dothing(this._cancelTokenSource.Token);
@@ -47,9 +49,9 @@ namespace practice
 
                     // 界面显示信息
                     this.Invoke((Action)(() =>
-                            this.textBox_info.Text += this.textBox_info.Text + i.ToString() + "\r\n"
+                        this.textBox_info.Text = this.textBox_info.Text + i.ToString() + "\r\n"
                             ));
-                }
+                  }
             }
             finally
             {
