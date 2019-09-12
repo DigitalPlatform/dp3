@@ -28,106 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl_main = new System.Windows.Forms.TabControl();
-            this.tabPage_stop = new System.Windows.Forms.TabPage();
-            this.textBox_info = new System.Windows.Forms.TextBox();
-            this.button_stop = new System.Windows.Forms.Button();
-            this.button_start = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControl_main.SuspendLayout();
-            this.tabPage_stop.SuspendLayout();
+            this.button_Cancel1 = new System.Windows.Forms.Button();
+            this.button_cancel2 = new System.Windows.Forms.Button();
+            this.button_cancel3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // tabControl_main
+            // button_Cancel1
             // 
-            this.tabControl_main.Controls.Add(this.tabPage_stop);
-            this.tabControl_main.Controls.Add(this.tabPage2);
-            this.tabControl_main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl_main.Location = new System.Drawing.Point(0, 0);
-            this.tabControl_main.Name = "tabControl_main";
-            this.tabControl_main.SelectedIndex = 0;
-            this.tabControl_main.Size = new System.Drawing.Size(838, 486);
-            this.tabControl_main.TabIndex = 0;
+            this.button_Cancel1.Location = new System.Drawing.Point(12, 12);
+            this.button_Cancel1.Name = "button_Cancel1";
+            this.button_Cancel1.Size = new System.Drawing.Size(372, 36);
+            this.button_Cancel1.TabIndex = 1;
+            this.button_Cancel1.Text = "1个CancellationToken停止1个线程";
+            this.button_Cancel1.UseVisualStyleBackColor = true;
+            this.button_Cancel1.Click += new System.EventHandler(this.button_Cancel1_Click);
             // 
-            // tabPage_stop
+            // button_cancel2
             // 
-            this.tabPage_stop.Controls.Add(this.textBox_info);
-            this.tabPage_stop.Controls.Add(this.button_stop);
-            this.tabPage_stop.Controls.Add(this.button_start);
-            this.tabPage_stop.Location = new System.Drawing.Point(4, 28);
-            this.tabPage_stop.Name = "tabPage_stop";
-            this.tabPage_stop.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_stop.Size = new System.Drawing.Size(830, 454);
-            this.tabPage_stop.TabIndex = 0;
-            this.tabPage_stop.Text = "停止测试";
-            this.tabPage_stop.UseVisualStyleBackColor = true;
+            this.button_cancel2.Location = new System.Drawing.Point(12, 73);
+            this.button_cancel2.Name = "button_cancel2";
+            this.button_cancel2.Size = new System.Drawing.Size(372, 50);
+            this.button_cancel2.TabIndex = 2;
+            this.button_cancel2.Text = "多个CancellationToken停止1个线程";
+            this.button_cancel2.UseVisualStyleBackColor = true;
+            this.button_cancel2.Click += new System.EventHandler(this.button_cancel2_Click);
             // 
-            // textBox_info
+            // button_cancel3
             // 
-            this.textBox_info.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox_info.Location = new System.Drawing.Point(9, 43);
-            this.textBox_info.Multiline = true;
-            this.textBox_info.Name = "textBox_info";
-            this.textBox_info.ReadOnly = true;
-            this.textBox_info.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_info.Size = new System.Drawing.Size(305, 403);
-            this.textBox_info.TabIndex = 2;
-            // 
-            // button_stop
-            // 
-            this.button_stop.Location = new System.Drawing.Point(110, 6);
-            this.button_stop.Name = "button_stop";
-            this.button_stop.Size = new System.Drawing.Size(96, 30);
-            this.button_stop.TabIndex = 1;
-            this.button_stop.Text = "停止";
-            this.button_stop.UseVisualStyleBackColor = true;
-            this.button_stop.Click += new System.EventHandler(this.button_stop_Click);
-            // 
-            // button_start
-            // 
-            this.button_start.Location = new System.Drawing.Point(8, 6);
-            this.button_start.Name = "button_start";
-            this.button_start.Size = new System.Drawing.Size(96, 30);
-            this.button_start.TabIndex = 0;
-            this.button_start.Text = "开始";
-            this.button_start.UseVisualStyleBackColor = true;
-            this.button_start.Click += new System.EventHandler(this.button_start_Click);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(830, 454);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.button_cancel3.Location = new System.Drawing.Point(12, 146);
+            this.button_cancel3.Name = "button_cancel3";
+            this.button_cancel3.Size = new System.Drawing.Size(372, 42);
+            this.button_cancel3.TabIndex = 3;
+            this.button_cancel3.Text = "await用法";
+            this.button_cancel3.UseVisualStyleBackColor = true;
+            this.button_cancel3.Click += new System.EventHandler(this.button_cancel3_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(838, 486);
-            this.Controls.Add(this.tabControl_main);
+            this.Controls.Add(this.button_cancel3);
+            this.Controls.Add(this.button_cancel2);
+            this.Controls.Add(this.button_Cancel1);
             this.Name = "Form1";
             this.Text = "练习窗";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.tabControl_main.ResumeLayout(false);
-            this.tabPage_stop.ResumeLayout(false);
-            this.tabPage_stop.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl_main;
-        private System.Windows.Forms.TabPage tabPage_stop;
-        private System.Windows.Forms.Button button_stop;
-        private System.Windows.Forms.Button button_start;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox textBox_info;
+        private System.Windows.Forms.Button button_Cancel1;
+        private System.Windows.Forms.Button button_cancel2;
+        private System.Windows.Forms.Button button_cancel3;
     }
 }
 
