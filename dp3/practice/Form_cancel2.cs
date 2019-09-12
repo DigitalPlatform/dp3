@@ -9,6 +9,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ * 要注意 CancellationTokenSource 对象要 Dispose。
+ * https://stackoverflow.com/questions/6960520/when-to-dispose-cancellationtokensource
+ * */
+
 namespace practice
 {
     public partial class Form_cancel2 : Form
@@ -22,21 +27,24 @@ namespace practice
         CancellationTokenSource _cancel1 = new CancellationTokenSource();
         CancellationTokenSource _cancel2 = new CancellationTokenSource();
 
-        CancellationTokenSource _compositeCancel = null;// CancellationTokenSource.CreateLinkedTokenSource(c1.Token, c2.Token, c3.Token);
-
-        private void button_start_Click(object sender, EventArgs e)
+        private async void button_start_Click(object sender, EventArgs e)
         {
             // 每次开头都重新 new 一个。这样避免受到上次遗留的 _cancel 对象的状态影响
+            this._cancel1.Dispose();
             this._cancel1 = new CancellationTokenSource();
+
+            this._cancel2.Dispose();
             this._cancel2 = new CancellationTokenSource();
-            _compositeCancel = CancellationTokenSource.CreateLinkedTokenSource(this._cancel1.Token, this._cancel2.Token);
 
-            this.textBox_info.Text = "";
-
-            Task.Run(() =>
+            using (CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(this._cancel1.Token, this._cancel2.Token))
             {
-                doSomething(this._compositeCancel.Token);
-            });
+                this.textBox_info.Text = "";
+
+                await Task.Run(() =>
+                {
+                    doSomething(cts.Token);
+                });
+            }
         }
 
         // 做事
@@ -90,6 +98,10 @@ namespace practice
         {
             // 窗口关闭前让循环退出
             this._cancel1.Cancel();
+            this._cancel1.Dispose();
+
+            this._cancel2.Cancel();
+            this._cancel2.Dispose();
         }
 
         // 停止1按钮触发
