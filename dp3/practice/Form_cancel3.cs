@@ -63,7 +63,7 @@ namespace practice
 
                 // 第三种写法
                 // 用 Task.Run() 调用一个平凡函数
-                int count = await Task.Run(()=> {
+                int count = await Task.Run(() => {
                     return RunTwo();
                 });
                 this.Invoke((Action)(() =>
