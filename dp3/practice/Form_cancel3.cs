@@ -22,7 +22,7 @@ namespace practice
         CancellationTokenSource _cancel = new CancellationTokenSource();
 
 
-        private  void button_start_ClickAsync(object sender, EventArgs e)
+        private async void button_start_Click(object sender, EventArgs e)
         {
             // 每次开头都重新 new 一个。这样避免受到上次遗留的 _cancel 对象的状态影响
             this._cancel.Dispose();
@@ -31,45 +31,100 @@ namespace practice
 
             // 设置按钮状态
             EnableControls(false);
-            //try
-            //{
-                //await Task.Run(() =>
-                //{
-                //    doSomething(this._cancel.Token, "*");
-                //});
-                //await Task.Run(() =>
-                //{
-                //    doSomething(this._cancel.Token, "-");
-                //});
-
-                Task t1= Task.Run(() =>
+            try
+            {
+                /*
+                // 第一种写法，匿名函数。代码较少还可以。代码多了最好写入一个单独的函数
+                await Task.Run(() =>
                 {
-                    doSomething(this._cancel.Token, "*");
-                });
+                    Task t1 = Task.Run(() =>
+                    {
+                        doSomething(this._cancel.Token, "*");
+                    });
 
-                Task t2= Task.Run(() =>
+                    Task t2 = Task.Run(() =>
+                    {
+                        doSomething(this._cancel.Token, "-");
+                    });
+
+                    Task.WaitAll(new Task[] { t1, t2 });
+                });
+                */
+
+                /*
+                // 第二种写法
+                // 代码写入一个具名函数
+                int count = await RunTwoTask();
+                this.Invoke((Action)(() =>
                 {
-                    doSomething(this._cancel.Token, "-");
+                    MessageBox.Show(this, $"count={count}");
+                }));
+                */
+
+                // 第三种写法
+                // 用 Task.Run() 调用一个平凡函数
+                int count = await Task.Run(()=> {
+                    return RunTwo();
+                });
+                this.Invoke((Action)(() =>
+                {
+                    MessageBox.Show(this, $"count={count}");
+                }));
+            }
+            finally
+            {
+                EnableControls(true);
+            }
+        }
+
+        // 专门函数，明确用一个单独的线程来运行
+        Task<int> RunTwoTask()
+        {
+            return Task.Run(() =>
+            {
+                Task<int> t1 = Task.Run(() =>
+                {
+                    return doSomething(this._cancel.Token, "*");
                 });
 
-                Task[] tasks = new Task[] { t1, t2 };
-                //Task.WaitAll(tasks);
-                Task.WhenAll(tasks).ContinueWith((t) => {
-                    EnableControls(true);
+                Task<int> t2 = Task.Run(() =>
+                {
+                    return doSomething(this._cancel.Token, "-");
                 });
-            //}
-            //finally
-            //{
-            //    EnableControls(true);
-            //}
+
+                Task.WaitAll(new Task[] { t1, t2 });
+
+                return t1.Result + t2.Result;
+            });
+        }
+
+        // 平凡的函数，要根据调主的意愿才能决定到底运行在什么线程
+        int RunTwo()
+        {
+            Task<int> t1 = Task.Run(() =>
+            {
+                return doSomething(this._cancel.Token, "*");
+            });
+
+            Task<int> t2 = Task.Run(() =>
+            {
+                return doSomething(this._cancel.Token, "-");
+            });
+
+            Task.WaitAll(new Task[] { t1, t2 });
+
+            return t1.Result + t2.Result;
         }
 
         // 做事
-        void doSomething(CancellationToken token, string preprefix)
+        int doSomething(CancellationToken token, string preprefix)
         {
             int i = 0;
             while (token.IsCancellationRequested == false)
             {
+                // 没有这个语句，界面会冻结
+                Thread.Sleep(5);
+
                 /*
                 // 中断也可以用
                 token.ThrowIfCancellationRequested();
@@ -82,11 +137,12 @@ namespace practice
                 {
                     this.textBox_info.Text = this.textBox_info.Text + preprefix + i.ToString() + "\r\n";
 
-                        // 没起作用
-                        this.textBox_info.ScrollToCaret();
-                }
-                 ));
+                    // 没起作用
+                    // this.textBox_info.ScrollToCaret();
+                }));
             }
+
+            return i;
         }
 
 
@@ -114,9 +170,5 @@ namespace practice
             // 停止
             this._cancel.Cancel();
         }
-
-
-
-
     }
 }

@@ -63,7 +63,7 @@
             this.button_start.TabIndex = 3;
             this.button_start.Text = "开始线程";
             this.button_start.UseVisualStyleBackColor = true;
-            this.button_start.Click += new System.EventHandler(this.button_start_ClickAsync);
+            this.button_start.Click += new System.EventHandler(this.button_start_Click);
             // 
             // Form_cancel3
             // 
