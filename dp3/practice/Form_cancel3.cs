@@ -129,20 +129,12 @@ namespace practice
                 // 没有这个语句，界面会冻结
                 Thread.Sleep(100);
 
-                /*
-                // 中断也可以用
-                token.ThrowIfCancellationRequested();
-                */
-
                 i++;
 
                 // 界面显示信息
                 this.Invoke((Action)(() =>
                 {
                     this.textBox_info.Text = this.textBox_info.Text + preprefix + i.ToString() + "\r\n";
-
-                    // 没起作用
-                    // this.textBox_info.ScrollToCaret();
                 }));
             }
 
