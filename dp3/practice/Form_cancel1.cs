@@ -25,6 +25,7 @@ namespace practice
         private void button_start_Click(object sender, EventArgs e)
         {
             // 每次开头都重新 new 一个。这样避免受到上次遗留的 _cancel 对象的状态影响
+            this._cancel.Dispose();
             this._cancel = new CancellationTokenSource();
             this.textBox_info.Text = "";
 
@@ -84,6 +85,8 @@ namespace practice
         {
             // 停止
             this._cancel.Cancel();
+            // 不再使用时，调用Dispose
+            this._cancel.Dispose();
         }
 
         private void Form_cancel1_FormClosing(object sender, FormClosingEventArgs e)

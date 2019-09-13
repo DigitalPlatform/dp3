@@ -59,7 +59,7 @@
             this.button_cancel3.Name = "button_cancel3";
             this.button_cancel3.Size = new System.Drawing.Size(372, 42);
             this.button_cancel3.TabIndex = 3;
-            this.button_cancel3.Text = "await用法";
+            this.button_cancel3.Text = "等待两个线程";
             this.button_cancel3.UseVisualStyleBackColor = true;
             this.button_cancel3.Click += new System.EventHandler(this.button_cancel3_Click);
             // 

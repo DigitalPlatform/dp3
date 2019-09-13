@@ -22,26 +22,46 @@ namespace practice
         CancellationTokenSource _cancel = new CancellationTokenSource();
 
 
-        private void button_start_Click(object sender, EventArgs e)
+        private  void button_start_ClickAsync(object sender, EventArgs e)
         {
             // 每次开头都重新 new 一个。这样避免受到上次遗留的 _cancel 对象的状态影响
+            this._cancel.Dispose();
             this._cancel = new CancellationTokenSource();
             this.textBox_info.Text = "";
 
-
             // 设置按钮状态
             EnableControls(false);
-            try
-            {
-                Task.Run(() =>
+            //try
+            //{
+                //await Task.Run(() =>
+                //{
+                //    doSomething(this._cancel.Token, "*");
+                //});
+                //await Task.Run(() =>
+                //{
+                //    doSomething(this._cancel.Token, "-");
+                //});
+
+                Task t1= Task.Run(() =>
                 {
                     doSomething(this._cancel.Token, "*");
-                });  //.Wait();
-            }
-            finally
-            {
-                EnableControls(true);
-            }
+                });
+
+                Task t2= Task.Run(() =>
+                {
+                    doSomething(this._cancel.Token, "-");
+                });
+
+                Task[] tasks = new Task[] { t1, t2 };
+                //Task.WaitAll(tasks);
+                Task.WhenAll(tasks).ContinueWith((t) => {
+                    EnableControls(true);
+                });
+            //}
+            //finally
+            //{
+            //    EnableControls(true);
+            //}
         }
 
         // 做事
@@ -69,6 +89,10 @@ namespace practice
             }
         }
 
+
+
+
+
         // 设置控件是否可用
         void EnableControls(bool bEnable)
         {
@@ -81,6 +105,7 @@ namespace practice
         {
             // 窗口关闭前让循环退出
             this._cancel.Cancel();
+            this._cancel.Dispose();
         }
 
         // 停止1按钮触发

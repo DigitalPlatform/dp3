@@ -43,7 +43,7 @@ namespace practice
                 await Task.Run(() =>
                 {
                     doSomething(cts.Token);
-                });
+                }).ConfigureAwait(true);              
             }
         }
 
@@ -68,12 +68,12 @@ namespace practice
 
                     // 界面显示信息
                     this.Invoke((Action)(() =>
-                    {
-                        this.textBox_info.Text = this.textBox_info.Text +"*"+ i.ToString() + "\r\n";
+                        {
+                            this.textBox_info.Text = this.textBox_info.Text +"*"+ i.ToString() + "\r\n";
 
-                        // 没起作用
-                        this.textBox_info.ScrollToCaret();
-                    }
+                            // 没起作用
+                            this.textBox_info.ScrollToCaret();
+                        }
                      ));
                 }
             }
