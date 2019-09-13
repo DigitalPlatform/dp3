@@ -149,10 +149,6 @@ namespace practice
             return i;
         }
 
-
-
-
-
         // 设置控件是否可用
         void EnableControls(bool bEnable)
         {

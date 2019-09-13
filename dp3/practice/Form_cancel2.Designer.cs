@@ -88,7 +88,6 @@
             this.Name = "Form_cancel2";
             this.Text = "多个CancellationToken";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_cancel1_FormClosing);
-            this.Load += new System.EventHandler(this.Form_cancel2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
