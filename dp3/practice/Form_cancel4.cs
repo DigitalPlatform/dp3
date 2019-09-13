@@ -18,9 +18,8 @@ namespace practice
             InitializeComponent();
         }
 
-        // 名字以用途命名即可。TokenSource 这种类型名称可以不出现在名字中
+        // 用于停止线程函数里的工作
         CancellationTokenSource _cancel = new CancellationTokenSource();
-
 
         private async void button_start_Click(object sender, EventArgs e)
         {
@@ -28,7 +27,6 @@ namespace practice
             this._cancel.Dispose();
             this._cancel = new CancellationTokenSource();
             this.textBox_info.Text = "";
-
 
             // 第三种写法
             // 用 Task.Run() 调用一个平凡函数
@@ -58,6 +56,7 @@ namespace practice
             {
                 info += "线程"+items.IndexOf(item)+":count=["+item.count.ToString()+"],text=["+item.text+"]"+"\r\n";
             }
+            // 保险起见，这里还是用invoke在界面显示 信息
             this.Invoke((Action)(() =>
             {
                 MessageBox.Show(this, info);
@@ -80,8 +79,10 @@ namespace practice
                 return doSomething(this._cancel.Token, "-");
             });
 
+            // 等待2个线程都返回
             Task.WaitAll(new Task[] { t1, t2 });
 
+            // 处理线程返回结果 
             List<Item> items = new List<Item>();
             items.Add(t1.Result);
             items.Add(t2.Result);
@@ -95,13 +96,8 @@ namespace practice
             int i = 0;
             while (token.IsCancellationRequested == false)
             {
-                // 没有这个语句，界面会冻结
+                // 没有这个语句，界面会冻结，如果秒数太少，界面也反应不过来
                 Thread.Sleep(100);
-
-                /*
-                // 中断也可以用
-                token.ThrowIfCancellationRequested();
-                */
 
                 i++;
 
@@ -124,10 +120,6 @@ namespace practice
             return item;
         }
 
-
-
-
-
         // 设置控件是否可用
         void EnableControls(bool bEnable)
         {
@@ -135,15 +127,14 @@ namespace practice
             this.button_stop1.Enabled = !(bEnable);
         }
 
-
         private void Form_cancel1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // 窗口关闭前让循环退出
+            // 窗口关闭前让循环退出，由于后面不再用_cancel，所以调dispose
             this._cancel.Cancel();
             this._cancel.Dispose();
         }
 
-        // 停止1按钮触发
+        // 停止按钮触发cancel，让循环退出
         private void button_stop1_Click(object sender, EventArgs e)
         {
             // 停止
@@ -151,6 +142,8 @@ namespace practice
         }
     }
 
+
+    
     class Item
     {
         public string text { get; set; }
