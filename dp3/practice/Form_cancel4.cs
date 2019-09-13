@@ -243,9 +243,5 @@ System.Runtime.InteropServices.COMException (0x800700AA): 请求的资源在使�
 
 
     
-    class Item
-    {
-        public string text { get; set; }
-        public int count { get; set; }
-    }
+
 }

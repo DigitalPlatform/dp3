@@ -85,14 +85,15 @@ namespace practice
         {
             // 停止
             this._cancel.Cancel();
-            // 不再使用时，调用Dispose
-            this._cancel.Dispose();
         }
 
         private void Form_cancel1_FormClosing(object sender, FormClosingEventArgs e)
         {
             // 窗口关闭前让循环退出
             this._cancel.Cancel();
+
+            // 不再使用时，调用Dispose
+            this._cancel.Dispose();
         }
     }
 }

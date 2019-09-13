@@ -74,7 +74,7 @@
             this.Controls.Add(this.button_stop1);
             this.Controls.Add(this.button_start);
             this.Name = "Form_cancel3";
-            this.Text = "CancellationToken停止线程";
+            this.Text = "等待两个线程";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_cancel1_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

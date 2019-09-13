@@ -1,6 +1,6 @@
 ﻿namespace practice
 {
-    partial class Form_cancel2
+    partial class Form5
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.textBox_info = new System.Windows.Forms.TextBox();
-            this.button_stop1 = new System.Windows.Forms.Button();
+            this.button_stop = new System.Windows.Forms.Button();
             this.button_start = new System.Windows.Forms.Button();
-            this.button_stop2 = new System.Windows.Forms.Button();
+            this.button_event = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox_info
@@ -46,49 +46,48 @@
             this.textBox_info.Size = new System.Drawing.Size(320, 389);
             this.textBox_info.TabIndex = 5;
             // 
-            // button_stop1
+            // button_stop
             // 
-            this.button_stop1.Location = new System.Drawing.Point(128, 12);
-            this.button_stop1.Name = "button_stop1";
-            this.button_stop1.Size = new System.Drawing.Size(96, 30);
-            this.button_stop1.TabIndex = 4;
-            this.button_stop1.Text = "停止1";
-            this.button_stop1.UseVisualStyleBackColor = true;
-            this.button_stop1.Click += new System.EventHandler(this.button_stop1_Click);
+            this.button_stop.Location = new System.Drawing.Point(399, 12);
+            this.button_stop.Name = "button_stop";
+            this.button_stop.Size = new System.Drawing.Size(96, 30);
+            this.button_stop.TabIndex = 4;
+            this.button_stop.Text = "停止";
+            this.button_stop.UseVisualStyleBackColor = true;
+            this.button_stop.Click += new System.EventHandler(this.button_stop_Click);
             // 
             // button_start
             // 
             this.button_start.Location = new System.Drawing.Point(26, 12);
             this.button_start.Name = "button_start";
-            this.button_start.Size = new System.Drawing.Size(96, 30);
+            this.button_start.Size = new System.Drawing.Size(154, 30);
             this.button_start.TabIndex = 3;
-            this.button_start.Text = "开始";
+            this.button_start.Text = "回调函数-开始";
             this.button_start.UseVisualStyleBackColor = true;
             this.button_start.Click += new System.EventHandler(this.button_start_Click);
             // 
-            // button_stop2
+            // button_event
             // 
-            this.button_stop2.Location = new System.Drawing.Point(230, 13);
-            this.button_stop2.Name = "button_stop2";
-            this.button_stop2.Size = new System.Drawing.Size(96, 30);
-            this.button_stop2.TabIndex = 6;
-            this.button_stop2.Text = "停止2";
-            this.button_stop2.UseVisualStyleBackColor = true;
-            this.button_stop2.Click += new System.EventHandler(this.button_stop2_Click);
+            this.button_event.Location = new System.Drawing.Point(216, 12);
+            this.button_event.Name = "button_event";
+            this.button_event.Size = new System.Drawing.Size(154, 30);
+            this.button_event.TabIndex = 6;
+            this.button_event.Text = "事件-开始";
+            this.button_event.UseVisualStyleBackColor = true;
+            this.button_event.Click += new System.EventHandler(this.button_event_Click);
             // 
-            // Form_cancel2
+            // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button_stop2);
+            this.Controls.Add(this.button_event);
             this.Controls.Add(this.textBox_info);
-            this.Controls.Add(this.button_stop1);
+            this.Controls.Add(this.button_stop);
             this.Controls.Add(this.button_start);
-            this.Name = "Form_cancel2";
-            this.Text = "多个CancellationToken";
+            this.Name = "Form5";
+            this.Text = "回调函数与事件";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_cancel1_FormClosing);
-            this.Load += new System.EventHandler(this.Form_cancel2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,8 +96,8 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBox_info;
-        private System.Windows.Forms.Button button_stop1;
+        private System.Windows.Forms.Button button_stop;
         private System.Windows.Forms.Button button_start;
-        private System.Windows.Forms.Button button_stop2;
+        private System.Windows.Forms.Button button_event;
     }
 }

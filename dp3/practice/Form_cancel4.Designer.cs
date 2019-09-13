@@ -73,7 +73,7 @@
             this.Controls.Add(this.button_stop1);
             this.Controls.Add(this.button_start);
             this.Name = "Form_cancel4";
-            this.Text = "CancellationToken停止线程";
+            this.Text = "浏览器控件";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_cancel1_FormClosing);
             this.ResumeLayout(false);
 

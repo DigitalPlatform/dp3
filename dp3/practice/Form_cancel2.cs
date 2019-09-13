@@ -117,6 +117,9 @@ namespace practice
             this._cancel2.Cancel();
         }
 
+        private void Form_cancel2_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }
