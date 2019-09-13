@@ -42,5 +42,10 @@ namespace practice
             Form_cancel4 dlg = new Form_cancel4();
             dlg.ShowDialog(this);
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

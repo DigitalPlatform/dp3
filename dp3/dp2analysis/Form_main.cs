@@ -29,8 +29,13 @@ namespace dp2analysis
             dlg.ShowDialog(this);
         }
 
-        private void button_borrowreturn_Click(object sender, EventArgs e)
+        private async void button_borrowreturn_Click(object sender, EventArgs e)
         {
+
+            this.textBox1.Text = "";
+            this._cancel.Dispose();
+            this._cancel = new CancellationTokenSource();
+
             if (string.IsNullOrEmpty(dp2analysisService.Instance.dp2ServerUrl) == true)
             {
                 MessageBox.Show(this, "尚未配置服务器地址");
@@ -40,11 +45,11 @@ namespace dp2analysis
             string text = this.textBox2.Text.Trim();
 
             text = text.Replace("\r\n", "\n");
-            string[] lines=text.Split(new char[] { '\n' });
+            string[] lines = text.Split(new char[] { '\n' });
 
             foreach (string line in lines)
             {
-                int nindex=line.IndexOf("/");
+                int nindex = line.IndexOf("/");
                 if (nindex == -1)
                 {
                     MessageBox.Show(this, "输入格式不合法");
@@ -57,7 +62,7 @@ namespace dp2analysis
                     return;
                 }
 
-                string itemBarcode = line.Substring(nindex+1).Trim();
+                string itemBarcode = line.Substring(nindex + 1).Trim();
                 if (itemBarcode == "")
                 {
                     MessageBox.Show(this, "输入格式不合法");
@@ -65,30 +70,40 @@ namespace dp2analysis
                 }
             }
 
-            foreach (string line in lines)
+            await Task.Run(() =>
             {
-                int nindex = line.IndexOf("/");
-                string patronBarcode = line.Substring(0, nindex).Trim();
-                string itemBarcode = line.Substring(nindex + 1).Trim();
-                Task.Factory.StartNew(() =>
+                this.Invoke((Action)(() =>
+                    EnableControls(false)
+                    ));
+                try
                 {
-                    TestBorrowAndReturn(this._cancel.Token,
-                        "", patronBarcode, itemBarcode);
-                });
-            }
+                    List<Task> tasks = new List<Task>();
 
-            //TestBorrowAndReturn("", "R0000001", "0000001");
+                    foreach (string line in lines)
+                    {
+                        int nindex = line.IndexOf("/");
+                        string patronBarcode = line.Substring(0, nindex).Trim();
+                        string itemBarcode = line.Substring(nindex + 1).Trim();
 
+                        Task t = Task.Run(() =>
+                          {
+                              TestBorrowAndReturn(this._cancel.Token,
+                                                      "", patronBarcode, itemBarcode);
+                          });
 
-            //Task.Factory.StartNew(() =>
-            //{
-            //    TestBorrowAndReturn("", "R0000001", "0000001");
-            //});
+                        tasks.Add(t);
 
-            //Task.Factory.StartNew(() =>
-            //{
-            //    TestBorrowAndReturn("", "R0000002", "0000002");
-            //});
+                    }
+
+                    Task.WaitAll(tasks.ToArray());
+                }
+                finally
+                {
+                    this.Invoke((Action)(() =>
+                        EnableControls(true)
+                        ));
+                }
+            });
         }
 
         void ShowInfo(string text)
@@ -119,21 +134,22 @@ namespace dp2analysis
         {
             string strError = "";
             int nRet = 0;
+            int nCount = 0;
 
             LibraryChannel channel = dp2analysisService.Instance.GetChannel();
-            this.Invoke((Action)(() =>
-                EnableControls(false)
-                ));
             try
             {
-                int nCount = 0;
-                ShowInfo("开始进行密集借书还书测试");
-
                 while (token.IsCancellationRequested == false)
                 {
+                    Thread.Sleep(50);
 
-                    //if (stop?.State != 0)
-                    //    break;
+                    // 数量达到100时，清空一下信息区域
+                    if (nCount % 50 == 0)
+                    {
+                        this.Invoke((Action)(() =>
+                          this.textBox1.Text = ""
+                        ));
+                    }
 
                     long lRet = 0;
                     string strOutputReaderBarcode = "";
@@ -162,11 +178,11 @@ namespace dp2analysis
 
                     if (lRet == -1)
                     {
-                        ShowInfo($"读者 {strReaderBarcode} 借书 {strItemBarcode} 失败: {strError}");
+                        ShowInfo($"读者 {strReaderBarcode} 借书 {strItemBarcode} 失败: {strError}" + nCount.ToString());
                     }
                     else
                     {
-                        ShowInfo($"读者 {strReaderBarcode} 借书 {strItemBarcode} 成功");
+                        ShowInfo($"读者 {strReaderBarcode} 借书 {strItemBarcode} 成功" +nCount.ToString());
                     }
 
                     // 还书
@@ -179,36 +195,24 @@ namespace dp2analysis
                         out strError);
 
                     if (lRet == -1)
-                        ShowInfo($"读者 {strReaderBarcode} 还书 {strItemBarcode} 失败: {strError}");
+                        ShowInfo($"读者 {strReaderBarcode} 还书 {strItemBarcode} 失败: {strError}" + nCount.ToString());
                     else
-                        ShowInfo($"读者 {strReaderBarcode} 还书 {strItemBarcode} 成功");
+                        ShowInfo($"读者 {strReaderBarcode} 还书 {strItemBarcode} 成功" + nCount.ToString());
 
 
                     nCount++;
                 }
-
-                ShowInfo("结束密集借书还书测试，共执行" + nCount.ToString() + "次");
             }
             catch (Exception ex)
             {
-                strError = "TestBorrowAndReturn() Exception: " + ex.Message;//ExceptionUtil.GetExceptionText(ex);
-                goto ERROR1;
+                ShowInfo("TestBorrowAndReturn() Exception: " + ex.Message);//ExceptionUtil.GetExceptionText(ex);              
             }
             finally
             {
-                this.Invoke((Action)(() =>
-                    EnableControls(true)
-                    ));
-
-                //channel.Timeout = old_timeout;
-                //this.ReturnChannel(channel);
+                ShowInfo(strReaderBarcode + "结束密集借书还书，共执行" + nCount.ToString() + "次");
 
                 dp2analysisService.Instance.ReturnChannel(channel);
             }
-
-
-            ERROR1:
-            ShowInfo(strError);
 
         }
 
@@ -227,9 +231,10 @@ namespace dp2analysis
             this._cancel.Cancel();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Form_main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.textBox1.Text = "";
+            this._cancel.Cancel();
+            this._cancel.Dispose();
         }
     }
 }

@@ -86,6 +86,7 @@
             this.Controls.Add(this.button_Cancel1);
             this.Name = "Form1";
             this.Text = "练习窗";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
