@@ -31,6 +31,7 @@
             this.button_Cancel1 = new System.Windows.Forms.Button();
             this.button_cancel2 = new System.Windows.Forms.Button();
             this.button_cancel3 = new System.Windows.Forms.Button();
+            this.button_cancel4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_Cancel1
@@ -63,11 +64,23 @@
             this.button_cancel3.UseVisualStyleBackColor = true;
             this.button_cancel3.Click += new System.EventHandler(this.button_cancel3_Click);
             // 
+            // button_cancel4
+            // 
+            this.button_cancel4.Location = new System.Drawing.Point(12, 209);
+            this.button_cancel4.Name = "button_cancel4";
+            this.button_cancel4.Size = new System.Drawing.Size(388, 92);
+            this.button_cancel4.TabIndex = 4;
+            this.button_cancel4.Text = "等待两个线程-控制按钮状态写在包裹的线程里\r\n线程函数返回一个对象";
+            this.button_cancel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_cancel4.UseVisualStyleBackColor = true;
+            this.button_cancel4.Click += new System.EventHandler(this.button_cancel4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(838, 486);
+            this.Controls.Add(this.button_cancel4);
             this.Controls.Add(this.button_cancel3);
             this.Controls.Add(this.button_cancel2);
             this.Controls.Add(this.button_Cancel1);
@@ -81,6 +94,7 @@
         private System.Windows.Forms.Button button_Cancel1;
         private System.Windows.Forms.Button button_cancel2;
         private System.Windows.Forms.Button button_cancel3;
+        private System.Windows.Forms.Button button_cancel4;
     }
 }
 

@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace practice
 {
-    public partial class Form_cancel3 : Form
+    public partial class Form_cancel4 : Form
     {
-        public Form_cancel3()
+        public Form_cancel4()
         {
             InitializeComponent();
         }
@@ -29,98 +29,68 @@ namespace practice
             this._cancel = new CancellationTokenSource();
             this.textBox_info.Text = "";
 
-            // 设置按钮状态
-            EnableControls(false);
-            try
+
+            // 第三种写法
+            // 用 Task.Run() 调用一个平凡函数
+            List<Item> items = await Task.Run(() =>
             {
-                /*
-                // 第一种写法，匿名函数。代码较少还可以。代码多了最好写入一个单独的函数
-                await Task.Run(() =>
-                {
-                    Task t1 = Task.Run(() =>
-                    {
-                        doSomething(this._cancel.Token, "*");
-                    });
 
-                    Task t2 = Task.Run(() =>
-                    {
-                        doSomething(this._cancel.Token, "-");
-                    });
-
-                    Task.WaitAll(new Task[] { t1, t2 });
-                });
-                */
-
-                /*
-                // 第二种写法
-                // 代码写入一个具名函数
-                int count = await RunTwoTask();
+                // 设置按钮状态
                 this.Invoke((Action)(() =>
+                    EnableControls(false)
+                    ));
+                try
                 {
-                    MessageBox.Show(this, $"count={count}");
-                }));
-                */
-
-
-                
-                // 第三种写法
-                // 用 Task.Run() 调用一个平凡函数
-                int count = await Task.Run(() => {
                     return RunTwo();
-                });
-                this.Invoke((Action)(() =>
+                }
+                finally
                 {
-                    MessageBox.Show(this, $"count={count}");
-                }));
-                 
-            }
-            finally
-            {
-                EnableControls(true);
-            }
-        }
+                    // 设置按钮状态
+                    this.Invoke((Action)(() =>
+                        EnableControls(true)
+                        ));
+                }
 
-        // 专门函数，明确用一个单独的线程来运行
-        Task<int> RunTwoTask()
-        {
-            return Task.Run(() =>
-            {
-                Task<int> t1 = Task.Run(() =>
-                {
-                    return doSomething(this._cancel.Token, "*");
-                });
-
-                Task<int> t2 = Task.Run(() =>
-                {
-                    return doSomething(this._cancel.Token, "-");
-                });
-
-                Task.WaitAll(new Task[] { t1, t2 });
-
-                return t1.Result + t2.Result;
             });
+
+            string info = "";
+            foreach (Item item in items)
+            {
+                info += "线程"+items.IndexOf(item)+":count=["+item.count.ToString()+"],text=["+item.text+"]"+"\r\n";
+            }
+            this.Invoke((Action)(() =>
+            {
+                MessageBox.Show(this, info);
+            }));
+
+
         }
+
 
         // 平凡的函数，要根据调主的意愿才能决定到底运行在什么线程
-        int RunTwo()
+        List<Item> RunTwo()
         {
-            Task<int> t1 = Task.Run(() =>
+            Task<Item> t1 = Task.Run(() =>
             {
                 return doSomething(this._cancel.Token, "*");
             });
 
-            Task<int> t2 = Task.Run(() =>
+            Task<Item> t2 = Task.Run(() =>
             {
                 return doSomething(this._cancel.Token, "-");
             });
 
             Task.WaitAll(new Task[] { t1, t2 });
 
-            return t1.Result + t2.Result;
+            List<Item> items = new List<Item>();
+            items.Add(t1.Result);
+            items.Add(t2.Result);
+
+            return items;
         }
 
-        // 做事
-        int doSomething(CancellationToken token, string preprefix)
+        // 做事，返回一个对象
+        Item doSomething(CancellationToken token, string preprefix)
         {
             int i = 0;
             while (token.IsCancellationRequested == false)
@@ -145,7 +115,13 @@ namespace practice
                 }));
             }
 
-            return i;
+            Item item = new Item
+            {
+                text = "合计"+i.ToString(),
+                count = i
+            };
+
+            return item;
         }
 
 
@@ -173,5 +149,11 @@ namespace practice
             // 停止
             this._cancel.Cancel();
         }
+    }
+
+    class Item
+    {
+        public string text { get; set; }
+        public int count { get; set; }
     }
 }

@@ -36,5 +36,11 @@ namespace practice
             Form_cancel3 dlg = new Form_cancel3();
             dlg.ShowDialog(this);
         }
+
+        private void button_cancel4_Click(object sender, EventArgs e)
+        {
+            Form_cancel4 dlg = new Form_cancel4();
+            dlg.ShowDialog(this);
+        }
     }
 }
