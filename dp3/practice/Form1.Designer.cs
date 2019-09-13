@@ -37,7 +37,7 @@
             // 
             // button_Cancel1
             // 
-            this.button_Cancel1.Location = new System.Drawing.Point(12, 12);
+            this.button_Cancel1.Location = new System.Drawing.Point(12, 44);
             this.button_Cancel1.Name = "button_Cancel1";
             this.button_Cancel1.Size = new System.Drawing.Size(372, 36);
             this.button_Cancel1.TabIndex = 1;
@@ -47,7 +47,7 @@
             // 
             // button_cancel2
             // 
-            this.button_cancel2.Location = new System.Drawing.Point(12, 73);
+            this.button_cancel2.Location = new System.Drawing.Point(12, 105);
             this.button_cancel2.Name = "button_cancel2";
             this.button_cancel2.Size = new System.Drawing.Size(372, 50);
             this.button_cancel2.TabIndex = 2;
@@ -57,7 +57,7 @@
             // 
             // button_cancel3
             // 
-            this.button_cancel3.Location = new System.Drawing.Point(12, 146);
+            this.button_cancel3.Location = new System.Drawing.Point(12, 178);
             this.button_cancel3.Name = "button_cancel3";
             this.button_cancel3.Size = new System.Drawing.Size(372, 42);
             this.button_cancel3.TabIndex = 3;
@@ -67,7 +67,7 @@
             // 
             // button_cancel4
             // 
-            this.button_cancel4.Location = new System.Drawing.Point(12, 209);
+            this.button_cancel4.Location = new System.Drawing.Point(12, 241);
             this.button_cancel4.Name = "button_cancel4";
             this.button_cancel4.Size = new System.Drawing.Size(392, 92);
             this.button_cancel4.TabIndex = 4;
@@ -78,7 +78,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(12, 329);
+            this.button5.Location = new System.Drawing.Point(12, 361);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(372, 42);
             this.button5.TabIndex = 5;
@@ -90,7 +90,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 486);
+            this.ClientSize = new System.Drawing.Size(873, 486);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button_cancel4);
             this.Controls.Add(this.button_cancel3);
