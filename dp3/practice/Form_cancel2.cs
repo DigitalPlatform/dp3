@@ -43,7 +43,7 @@ namespace practice
                 await Task.Run(() =>
                 {
                     doSomething(cts.Token);
-                }).ConfigureAwait(true);              
+                });              
             }
         }
 
