@@ -68,6 +68,7 @@ namespace practice
                 int count = await Task.Run(() => {
                     return RunTwo();
                 });
+                // 保险起见，这里还是用invoke在界面显示 信息
                 this.Invoke((Action)(() =>
                 {
                     MessageBox.Show(this, $"count={count}");

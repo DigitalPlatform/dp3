@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -26,13 +27,13 @@ namespace practice
             // 每次开头都重新 new 一个。这样避免受到上次遗留的 _cancel 对象的状态影响
             this._cancel.Dispose();
             this._cancel = new CancellationTokenSource();
-            this.textBox_info.Text = "";
 
-            // 第三种写法
+            // 清空浏览器控件
+            this.ClearHtml();
+
             // 用 Task.Run() 调用一个平凡函数
             List<Item> items = await Task.Run(() =>
             {
-
                 // 设置按钮状态
                 this.Invoke((Action)(() =>
                     EnableControls(false)
@@ -54,15 +55,9 @@ namespace practice
             string info = "";
             foreach (Item item in items)
             {
-                info += "线程"+items.IndexOf(item)+":count=["+item.count.ToString()+"],text=["+item.text+"]"+"\r\n";
+                info += "线程" + items.IndexOf(item) + ":count=[" + item.count.ToString() + "],text=[" + item.text + "]" + "<br/>";
             }
-            // 保险起见，这里还是用invoke在界面显示 信息
-            this.Invoke((Action)(() =>
-            {
-                MessageBox.Show(this, info);
-            }));
-
-
+            this.AppendHtml(info);
         }
 
 
@@ -101,19 +96,17 @@ namespace practice
 
                 i++;
 
-                // 界面显示信息
-                this.Invoke((Action)(() =>
-                {
-                    this.textBox_info.Text = this.textBox_info.Text + preprefix + i.ToString() + "\r\n";
-
-                    // 没起作用
-                    // this.textBox_info.ScrollToCaret();
-                }));
+                string text =  preprefix + i.ToString();
+                if (preprefix == "*")
+                    text = "<div class='debug error'>" + text + "</div>";
+                else
+                    text = "<div class='debug green'>" + text + "</div>";
+                this.AppendHtml(text);
             }
 
             Item item = new Item
             {
-                text = "合计"+i.ToString(),
+                text = "合计" + i.ToString(),
                 count = i
             };
 
@@ -140,6 +133,112 @@ namespace practice
             // 停止
             this._cancel.Cancel();
         }
+
+        #region 浏览器控件的相关函数
+
+        delegate void Delegate_AppendHtml(string strText);
+        /// <summary>
+        /// 向 IE 控件中追加一段 HTML 内容
+        /// </summary>
+        /// <param name="strText">HTML 内容</param>
+        public void AppendHtml(string strText)
+        {
+            if (this.webBrowser1.InvokeRequired)
+            {
+                Delegate_AppendHtml d = new Delegate_AppendHtml(AppendHtml);
+
+                this.webBrowser1.BeginInvoke(d, new object[] { strText });
+                return;
+            }
+
+            WriteHtml(this.webBrowser1,
+                strText);
+
+            // 因为HTML元素总是没有收尾，其他有些方法可能不奏效
+            this.webBrowser1.Document.Window.ScrollTo(0,
+               this.webBrowser1.Document.Body.ScrollRectangle.Height);
+        }
+
+
+        // 不支持异步调用
+        /// <summary>
+        /// 向一个浏览器控件中追加写入 HTML 字符串
+        /// 不支持异步调用
+        /// </summary>
+        /// <param name="webBrowser">浏览器控件</param>
+        /// <param name="strHtml">HTML 字符串</param>
+        public static void WriteHtml(WebBrowser webBrowser,
+             string strHtml)
+        {
+            HtmlDocument doc = webBrowser.Document;
+            if (doc == null)
+            {
+                Navigate(webBrowser, "about:blank");
+                doc = webBrowser.Document;
+            }
+            doc.Write(strHtml);
+        }
+
+        // 2015/7/28 
+        // 能处理异常的 Navigate
+        internal static void Navigate(WebBrowser webBrowser, string urlString)
+        {
+            int nRedoCount = 0;
+            REDO:
+            try
+            {
+                webBrowser.Navigate(urlString);
+            }
+            catch (System.Runtime.InteropServices.COMException ex)
+            {
+                /*
+System.Runtime.InteropServices.COMException (0x800700AA): 请求的资源在使用中。 (异常来自 HRESULT:0x800700AA)
+   在 System.Windows.Forms.UnsafeNativeMethods.IWebBrowser2.Navigate2(Object& URL, Object& flags, Object& targetFrameName, Object& postData, Object& headers)
+   在 System.Windows.Forms.WebBrowser.PerformNavigate2(Object& URL, Object& flags, Object& targetFrameName, Object& postData, Object& headers)
+   在 System.Windows.Forms.WebBrowser.Navigate(String urlString)
+   在 dp2Circulation.QuickChargingForm._setReaderRenderString(String strText) 位置 F:\cs4.0\dp2Circulation\Charging\QuickChargingForm.cs:行号 394
+                 * */
+                if ((uint)ex.ErrorCode == 0x800700AA)
+                {
+                    nRedoCount++;
+                    if (nRedoCount < 5)
+                    {
+                        Application.DoEvents(); // 2015/8/13
+                        Thread.Sleep(200);
+                        goto REDO;
+                    }
+                }
+
+                throw ex;
+            }
+        }
+
+
+        /// <summary>
+        /// 清除已有的 HTML 显示
+        /// </summary>
+        public void ClearHtml()
+        {
+            string strCssUrl = Application.StartupPath + "/history.css"; //PathUtil.MergePath(Program.MainForm.DataDir, "/history.css");
+            if (File.Exists(strCssUrl) == false)
+            {
+                throw new Exception("文件["+strCssUrl+"]不存在");
+            }
+            string strLink = "<link href='" + strCssUrl + "' type='text/css' rel='stylesheet' />";
+
+            HtmlDocument doc = this.webBrowser1.Document;
+            if (doc == null)
+            {
+                this.webBrowser1.Navigate("about:blank");
+                doc = this.webBrowser1.Document;
+            }
+            doc = doc.OpenNew(true);
+
+            WriteHtml(this.webBrowser1,
+                "<html><head>" + strLink + "</head><body>");
+        }
+
+        #endregion
     }
 
 

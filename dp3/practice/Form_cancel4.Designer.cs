@@ -28,22 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox_info = new System.Windows.Forms.TextBox();
             this.button_stop1 = new System.Windows.Forms.Button();
             this.button_start = new System.Windows.Forms.Button();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
-            // 
-            // textBox_info
-            // 
-            this.textBox_info.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox_info.Location = new System.Drawing.Point(27, 64);
-            this.textBox_info.Multiline = true;
-            this.textBox_info.Name = "textBox_info";
-            this.textBox_info.ReadOnly = true;
-            this.textBox_info.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_info.Size = new System.Drawing.Size(320, 374);
-            this.textBox_info.TabIndex = 5;
             // 
             // button_stop1
             // 
@@ -65,26 +53,35 @@
             this.button_start.UseVisualStyleBackColor = true;
             this.button_start.Click += new System.EventHandler(this.button_start_Click);
             // 
-            // Form_cancel3
+            // webBrowser1
+            // 
+            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowser1.Location = new System.Drawing.Point(26, 61);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(631, 468);
+            this.webBrowser1.TabIndex = 6;
+            // 
+            // Form_cancel4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox_info);
+            this.ClientSize = new System.Drawing.Size(800, 541);
+            this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.button_stop1);
             this.Controls.Add(this.button_start);
-            this.Name = "Form_cancel3";
+            this.Name = "Form_cancel4";
             this.Text = "CancellationToken停止线程";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_cancel1_FormClosing);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox_info;
         private System.Windows.Forms.Button button_stop1;
         private System.Windows.Forms.Button button_start;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }

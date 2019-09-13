@@ -70,7 +70,7 @@
             this.button_cancel4.Name = "button_cancel4";
             this.button_cancel4.Size = new System.Drawing.Size(388, 92);
             this.button_cancel4.TabIndex = 4;
-            this.button_cancel4.Text = "等待两个线程-控制按钮状态写在包裹的线程里\r\n线程函数返回一个对象";
+            this.button_cancel4.Text = "等待两个线程-控制按钮状态写在包裹的线程里\r\n线程函数返回一个对象\r\n浏览器控件";
             this.button_cancel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_cancel4.UseVisualStyleBackColor = true;
             this.button_cancel4.Click += new System.EventHandler(this.button_cancel4_Click);
