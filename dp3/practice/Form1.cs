@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigitalPlatform.RestClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ namespace practice
             InitializeComponent();
         }
 
+        #region 通用练习题
 
         private void button_Cancel1_Click(object sender, EventArgs e)
         {
@@ -43,12 +45,45 @@ namespace practice
             dlg.ShowDialog(this);
         }
 
-
-
         private void button5_Click(object sender, EventArgs e)
         {
             Form5 dlg = new Form5();
             dlg.ShowDialog(this);
         }
+
+        #endregion
+
+        #region 通道测试
+
+        // 通道池
+        RestChannelPool _channelPool = new RestChannelPool();
+
+        private void button_channel_create_Click(object sender, EventArgs e)
+        {
+            string url = this.textBox_channel_url.Text.Trim();
+            string userName = this.textBox_channel_userName.Text.Trim();
+            if (url == "" || userName == "")
+            {
+                MessageBox.Show(this, "url 和 userName不能为空");
+                return;
+            }
+            this._channelPool.GetChannel(url, userName);
+            this.ViewChannel();
+        }
+
+        void ViewChannel()
+        {
+            this.listView_channel.Items.Clear();
+
+            foreach (ChannelWrapper wrapper in this._channelPool)
+            {
+                ListViewItem item = new ListViewItem(wrapper.Channel.Url);
+                item.SubItems.Add(wrapper.Channel.UserName);
+                this.listView_channel.Items.Add(item);
+            }
+        }
+
+        #endregion
+
     }
 }

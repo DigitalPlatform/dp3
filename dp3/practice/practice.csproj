@@ -130,5 +130,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalPlatform.RestClient\DigitalPlatform.RestClient.csproj">
+      <Project>{3a21cc16-68c4-4915-8e1b-4f47adc8401b}</Project>
+      <Name>DigitalPlatform.RestClient</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
