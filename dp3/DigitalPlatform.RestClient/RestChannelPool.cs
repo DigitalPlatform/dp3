@@ -64,17 +64,18 @@ namespace DigitalPlatform.RestClient
                     }
                 }
 
-                // 如果没有找到
-                RestChannel channel = new RestChannel();
-                channel.Url = strUrl;
-                channel.UserName = strUserName;
-                //inner_channel.BeforeLogin -= new BeforeLoginEventHandle(channel_BeforeLogin);
-                //inner_channel.BeforeLogin += new BeforeLoginEventHandle(channel_BeforeLogin);
-
+                // 没有找到,则new一个
+                RestChannel channel = new RestChannel()
+                {
+                    Url = strUrl,
+                    UserName = strUserName
+                };
+                
                 wrapper = new ChannelWrapper();
                 wrapper.Channel = channel;
                 wrapper.InUsing = true;
 
+                // 加到集合里
                 this.Add(wrapper);
 
                 // 返回

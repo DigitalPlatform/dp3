@@ -42,11 +42,12 @@
             this.ColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button_channel_create = new System.Windows.Forms.Button();
+            this.button_channel_get = new System.Windows.Forms.Button();
             this.textBox_channel_userName = new System.Windows.Forms.TextBox();
             this.textBox_channel_url = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -119,7 +120,7 @@
             this.tabPage1.Controls.Add(this.button_channel_clear);
             this.tabPage1.Controls.Add(this.button_channel_return);
             this.tabPage1.Controls.Add(this.listView_channel);
-            this.tabPage1.Controls.Add(this.button_channel_create);
+            this.tabPage1.Controls.Add(this.button_channel_get);
             this.tabPage1.Controls.Add(this.textBox_channel_userName);
             this.tabPage1.Controls.Add(this.textBox_channel_url);
             this.tabPage1.Controls.Add(this.label2);
@@ -156,6 +157,7 @@
             this.button_channel_clear.TabIndex = 16;
             this.button_channel_clear.Text = "clear channel";
             this.button_channel_clear.UseVisualStyleBackColor = true;
+            this.button_channel_clear.Click += new System.EventHandler(this.button_channel_clear_Click);
             // 
             // button_channel_return
             // 
@@ -166,6 +168,7 @@
             this.button_channel_return.TabIndex = 15;
             this.button_channel_return.Text = "return channel";
             this.button_channel_return.UseVisualStyleBackColor = true;
+            this.button_channel_return.Click += new System.EventHandler(this.button_channel_return_Click);
             // 
             // listView_channel
             // 
@@ -174,13 +177,14 @@
             this.listView_channel.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColumnHeader1,
             this.ColumnHeader2,
+            this.columnHeader4,
             this.columnHeader3});
             this.listView_channel.FullRowSelect = true;
             this.listView_channel.GridLines = true;
             this.listView_channel.HideSelection = false;
             this.listView_channel.Location = new System.Drawing.Point(22, 91);
             this.listView_channel.Name = "listView_channel";
-            this.listView_channel.Size = new System.Drawing.Size(596, 377);
+            this.listView_channel.Size = new System.Drawing.Size(888, 377);
             this.listView_channel.TabIndex = 14;
             this.listView_channel.UseCompatibleStateImageBehavior = false;
             this.listView_channel.View = System.Windows.Forms.View.Details;
@@ -200,15 +204,15 @@
             this.columnHeader3.Text = "请求数";
             this.columnHeader3.Width = 83;
             // 
-            // button_channel_create
+            // button_channel_get
             // 
-            this.button_channel_create.Location = new System.Drawing.Point(492, 34);
-            this.button_channel_create.Name = "button_channel_create";
-            this.button_channel_create.Size = new System.Drawing.Size(126, 34);
-            this.button_channel_create.TabIndex = 13;
-            this.button_channel_create.Text = "创建通道";
-            this.button_channel_create.UseVisualStyleBackColor = true;
-            this.button_channel_create.Click += new System.EventHandler(this.button_channel_create_Click);
+            this.button_channel_get.Location = new System.Drawing.Point(492, 34);
+            this.button_channel_get.Name = "button_channel_get";
+            this.button_channel_get.Size = new System.Drawing.Size(126, 34);
+            this.button_channel_get.TabIndex = 13;
+            this.button_channel_get.Text = "获取通道";
+            this.button_channel_get.UseVisualStyleBackColor = true;
+            this.button_channel_get.Click += new System.EventHandler(this.button_channel_get_Click);
             // 
             // textBox_channel_userName
             // 
@@ -242,6 +246,11 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "url";
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "InUsing";
+            this.columnHeader4.Width = 117;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -273,11 +282,12 @@
         private System.Windows.Forms.ColumnHeader ColumnHeader1;
         private System.Windows.Forms.ColumnHeader ColumnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.Button button_channel_create;
+        private System.Windows.Forms.Button button_channel_get;
         private System.Windows.Forms.TextBox textBox_channel_userName;
         private System.Windows.Forms.TextBox textBox_channel_url;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
 
