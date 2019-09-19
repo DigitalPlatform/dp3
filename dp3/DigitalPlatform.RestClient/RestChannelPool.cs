@@ -23,11 +23,6 @@ namespace DigitalPlatform.RestClient
 
     public class RestChannelPool : List<ChannelWrapper>
     {
-        /// <summary>
-        /// 最多通道数
-        /// </summary>
-        public int MaxCount = 50;
-
         //允许多个线程同时处于读取模式，但同一时间只允许一个线程写入模式，因此也称作共享-独占锁
         internal ReaderWriterLockSlim m_lock = new ReaderWriterLockSlim();
         internal static int m_nLockTimeout = 5000;  // 5000=5秒
@@ -51,18 +46,6 @@ namespace DigitalPlatform.RestClient
                 wrapper = this.GetChannelInternel(strUrl, strUserName, true);
                 if (wrapper != null)
                     return wrapper.Channel;
-
-                //超出数量，需清理不用的通道
-                if (this.Count >= MaxCount)
-                {
-                    // 清理不用的通道
-                    int nDeleteCount = CleanChannel(false);
-                    if (nDeleteCount == 0)
-                    {
-                        // 全部都在使用
-                        throw new Exception("通道池已满，请稍候重试获取通道");
-                    }
-                }
 
                 // 没有找到,则new一个
                 RestChannel channel = new RestChannel()

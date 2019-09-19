@@ -21,6 +21,7 @@ namespace DigitalPlatform.RestClient
         // todo 清掉什么信息？
         public void Close()
         {
+            // 调logout接口
         }
 
         // return:

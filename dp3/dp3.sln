@@ -35,7 +35,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRestLibrary", "TestRest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dp2mini", "dp2mini\dp2mini.csproj", "{4D46CB1B-41FF-40EC-B93F-1D95D52CF7CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalPlatform.RestClient", "DigitalPlatform.RestClient\DigitalPlatform.RestClient.csproj", "{3A21CC16-68C4-4915-8E1B-4F47ADC8401B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalPlatform.RestClient", "DigitalPlatform.RestClient\DigitalPlatform.RestClient.csproj", "{3A21CC16-68C4-4915-8E1B-4F47ADC8401B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceCenterDemo", "FaceCenterDemo\FaceCenterDemo.csproj", "{62BD21E1-3DC0-4251-8A66-88E0949BEC02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -180,6 +182,14 @@ Global
 		{3A21CC16-68C4-4915-8E1B-4F47ADC8401B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A21CC16-68C4-4915-8E1B-4F47ADC8401B}.Release|x86.ActiveCfg = Release|Any CPU
 		{3A21CC16-68C4-4915-8E1B-4F47ADC8401B}.Release|x86.Build.0 = Release|Any CPU
+		{62BD21E1-3DC0-4251-8A66-88E0949BEC02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62BD21E1-3DC0-4251-8A66-88E0949BEC02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62BD21E1-3DC0-4251-8A66-88E0949BEC02}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{62BD21E1-3DC0-4251-8A66-88E0949BEC02}.Debug|x86.Build.0 = Debug|Any CPU
+		{62BD21E1-3DC0-4251-8A66-88E0949BEC02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62BD21E1-3DC0-4251-8A66-88E0949BEC02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62BD21E1-3DC0-4251-8A66-88E0949BEC02}.Release|x86.ActiveCfg = Release|Any CPU
+		{62BD21E1-3DC0-4251-8A66-88E0949BEC02}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -198,8 +198,9 @@ namespace practice
             }
         }
 
+        private void tabPage_channel_Click(object sender, EventArgs e)
+        {
 
-
-
+        }
     }
 }
