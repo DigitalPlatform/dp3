@@ -33,9 +33,9 @@
             // 
             // button_faceRecognition1
             // 
-            this.button_faceRecognition1.Location = new System.Drawing.Point(47, 38);
+            this.button_faceRecognition1.Location = new System.Drawing.Point(35, 58);
             this.button_faceRecognition1.Name = "button_faceRecognition1";
-            this.button_faceRecognition1.Size = new System.Drawing.Size(545, 45);
+            this.button_faceRecognition1.Size = new System.Drawing.Size(370, 45);
             this.button_faceRecognition1.TabIndex = 1;
             this.button_faceRecognition1.Text = "人脸识别1(利用 FaceCenter 窗口)";
             this.button_faceRecognition1.UseVisualStyleBackColor = true;
@@ -49,6 +49,7 @@
             this.Controls.Add(this.button_faceRecognition1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
