@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DigitalPlatform.Interfaces
 {
-
-
-
     /// <summary>
     /// 生物识别接口
     /// </summary>
@@ -95,7 +93,7 @@ namespace DigitalPlatform.Interfaces
         public string Version { get; set; }
 
         // [out] 返回读者照片
-        public byte[] ImageData { get; set; }
+        public byte [] ImageData { get; set; }
     }
 
     [Serializable()]
@@ -110,7 +108,7 @@ namespace DigitalPlatform.Interfaces
 
         public override string ToString()
         {
-            StringBuilder text = new StringBuilder(base.ToString() + "\r\n");
+            StringBuilder text = new StringBuilder(base.ToString()+"\r\n");
             text.Append($"Patron={Patron}\r\n");
             text.Append($"Score={Score}\r\n");
             text.Append($"DebugInfo={DebugInfo}\r\n");
@@ -123,36 +121,5 @@ namespace DigitalPlatform.Interfaces
     {
         // [out] 返回图象
         public byte[] ImageData { get; set; }
-    }
-
-    [Serializable()]
-    public class NormalResult
-    {
-        public int Value { get; set; }
-        public string ErrorInfo { get; set; }
-        public string ErrorCode { get; set; }
-
-        public NormalResult(NormalResult result)
-        {
-            this.Value = result.Value;
-            this.ErrorInfo = result.ErrorInfo;
-            this.ErrorCode = result.ErrorCode;
-        }
-
-        public NormalResult(int value, string error)
-        {
-            this.Value = value;
-            this.ErrorInfo = error;
-        }
-
-        public NormalResult()
-        {
-
-        }
-
-        public override string ToString()
-        {
-            return $"Value={Value},ErrorInfo={ErrorInfo},ErrorCode={ErrorCode}";
-        }
     }
 }

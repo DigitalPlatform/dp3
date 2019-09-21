@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalPlatform.RestClient"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallFaceCenterDemo", "CallFaceCenterDemo\CallFaceCenterDemo.csproj", "{4C574359-91BF-4697-B729-BA515B94F86A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalPlatform.Interfaces", "DigitalPlatform.Interfaces\DigitalPlatform.Interfaces.csproj", "{3C4F8133-8652-40B6-B37B-200B25C2B043}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -181,6 +183,14 @@ Global
 		{4C574359-91BF-4697-B729-BA515B94F86A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C574359-91BF-4697-B729-BA515B94F86A}.Release|x86.ActiveCfg = Release|Any CPU
 		{4C574359-91BF-4697-B729-BA515B94F86A}.Release|x86.Build.0 = Release|Any CPU
+		{3C4F8133-8652-40B6-B37B-200B25C2B043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C4F8133-8652-40B6-B37B-200B25C2B043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C4F8133-8652-40B6-B37B-200B25C2B043}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3C4F8133-8652-40B6-B37B-200B25C2B043}.Debug|x86.Build.0 = Debug|Any CPU
+		{3C4F8133-8652-40B6-B37B-200B25C2B043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C4F8133-8652-40B6-B37B-200B25C2B043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C4F8133-8652-40B6-B37B-200B25C2B043}.Release|x86.ActiveCfg = Release|Any CPU
+		{3C4F8133-8652-40B6-B37B-200B25C2B043}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
