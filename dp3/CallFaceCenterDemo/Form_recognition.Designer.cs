@@ -1,6 +1,6 @@
 ﻿namespace CallFaceCenterDemo
 {
-    partial class Form1
+    partial class Form_recognition
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -41,15 +41,15 @@
             this.button_faceRecognition1.UseVisualStyleBackColor = true;
             this.button_faceRecognition1.Click += new System.EventHandler(this.button_faceRecognition1_Click);
             // 
-            // Form1
+            // Form_recognition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button_faceRecognition1);
-            this.Name = "Form1";
+            this.Name = "Form_recognition";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_recognition_FormClosing);
             this.ResumeLayout(false);
 
         }

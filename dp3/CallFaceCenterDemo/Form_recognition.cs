@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace CallFaceCenterDemo
 {
-    public partial class Form1 : Form
+    public partial class Form_recognition : Form
     {
         // 人脸中心 .NET Remoting URL
         static string facecenter_url = "ipc://FaceChannel/FaceServer";
@@ -21,7 +21,7 @@ namespace CallFaceCenterDemo
         // 人脸识别任务对象
         Task _recognitionTask = null;
 
-        public Form1()
+        public Form_recognition()
         {
             InitializeComponent();
         }
@@ -56,9 +56,14 @@ namespace CallFaceCenterDemo
         }
 
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
+        private void Form_recognition_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 记得取消没有完成的人脸识别任务
+            if (_recognitionTask != null)
+            {
+                FaceManager.CancelRecognition(facecenter_url);
+            }
         }
     }
 

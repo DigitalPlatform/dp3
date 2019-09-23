@@ -1,11 +1,15 @@
 ﻿using DigitalPlatform.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Ipc;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CallFaceCenterDemo
 {
@@ -45,6 +49,49 @@ namespace CallFaceCenterDemo
             finally
             {
                 EndFaceChannel(channel);
+            }
+        }
+
+        // image对象由外部传入
+        public static NormalResult DisplayVideo(string url, CancellationToken token, PictureBox picBox)
+        {
+            FaceChannel channel = FaceManager.StartFaceChannel(url,
+                 out string strError);
+            if (channel == null)
+            {
+                return new NormalResult
+                {
+                    Value = -1,
+                    ErrorInfo = strError
+                };
+            }
+            try
+            {
+                while (token.IsCancellationRequested == false)
+                {
+                    var result = channel.Object.GetImage("");
+                    if (result.Value == -1)
+                        return result;
+                    using (MemoryStream stream = new MemoryStream(result.ImageData))
+                    {
+                        picBox.Image = Image.FromStream(stream);
+                        //image = Image.FromStream(stream); 
+                    }
+                }
+                return new NormalResult();
+            }
+            catch (Exception ex)
+            {
+                strError = $"针对 {url} 的 GetImage() 请求失败: { ex.Message}";
+                return new RecognitionFaceResult
+                {
+                    Value = -1,
+                    ErrorInfo = strError
+                };
+            }
+            finally
+            {
+                FaceManager.EndFaceChannel(channel);
             }
         }
 
