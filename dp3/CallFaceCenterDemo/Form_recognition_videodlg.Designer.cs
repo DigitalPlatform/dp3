@@ -34,7 +34,7 @@
             // 
             // button_faceRecognition1
             // 
-            this.button_faceRecognition1.Location = new System.Drawing.Point(111, 53);
+            this.button_faceRecognition1.Location = new System.Drawing.Point(99, 121);
             this.button_faceRecognition1.Name = "button_faceRecognition1";
             this.button_faceRecognition1.Size = new System.Drawing.Size(370, 45);
             this.button_faceRecognition1.TabIndex = 1;
@@ -44,9 +44,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(111, 214);
+            this.textBox1.Location = new System.Drawing.Point(99, 214);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(360, 28);
+            this.textBox1.Size = new System.Drawing.Size(370, 58);
             this.textBox1.TabIndex = 2;
             // 
             // Form_recognition_videodlg

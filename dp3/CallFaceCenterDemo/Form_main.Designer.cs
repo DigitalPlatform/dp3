@@ -110,21 +110,21 @@
             // 人脸识别接口ToolStripMenuItem
             // 
             this.人脸识别接口ToolStripMenuItem.Name = "人脸识别接口ToolStripMenuItem";
-            this.人脸识别接口ToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.人脸识别接口ToolStripMenuItem.Size = new System.Drawing.Size(236, 30);
             this.人脸识别接口ToolStripMenuItem.Text = "人脸识别接口";
             this.人脸识别接口ToolStripMenuItem.Click += new System.EventHandler(this.人脸识别接口ToolStripMenuItem_Click);
             // 
             // 显示图像ToolStripMenuItem
             // 
             this.显示图像ToolStripMenuItem.Name = "显示图像ToolStripMenuItem";
-            this.显示图像ToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.显示图像ToolStripMenuItem.Size = new System.Drawing.Size(236, 30);
             this.显示图像ToolStripMenuItem.Text = "显示图像";
             this.显示图像ToolStripMenuItem.Click += new System.EventHandler(this.显示图像ToolStripMenuItem_Click);
             // 
             // 识别弹出图像窗口ToolStripMenuItem
             // 
             this.识别弹出图像窗口ToolStripMenuItem.Name = "识别弹出图像窗口ToolStripMenuItem";
-            this.识别弹出图像窗口ToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.识别弹出图像窗口ToolStripMenuItem.Size = new System.Drawing.Size(236, 30);
             this.识别弹出图像窗口ToolStripMenuItem.Text = "识别弹出图像窗口";
             this.识别弹出图像窗口ToolStripMenuItem.Click += new System.EventHandler(this.识别弹出图像窗口ToolStripMenuItem_Click);
             // 
