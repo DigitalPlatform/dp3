@@ -15,6 +15,9 @@ namespace practice
 {
     public partial class Form1 : Form
     {
+        // 通道池
+        RestChannelPool _channelPool = new RestChannelPool();
+
         public Form1()
         {
             InitializeComponent();
@@ -54,85 +57,10 @@ namespace practice
 
         #endregion
 
-        #region 通道测试
-
-        // 通道池
-        RestChannelPool _channelPool = new RestChannelPool();
-
-
-        private void button_channel_get_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        Hashtable _table = new Hashtable();
-
-        private void button_getChannel_Click(object sender, EventArgs e)
-        {
-            string url = this.Channel_textBox_url.Text.Trim();
-            string userName = this.Channel_textBox_userName.Text.Trim();
-            if (url == "" || userName == "")
-            {
-                MessageBox.Show(this, "url 和 userName不能为空");
-                return;
-            }
-
-            RestChannel channel = this._channelPool.GetChannel(url, userName);
-
-            this.ViewChannel();
-        }
-        void ViewChannel()
-        {
-            this.Channel_listView_channels.Items.Clear();
-            _table.Clear();
-
-            foreach (ChannelWrapper wrapper in this._channelPool)
-            {
-                ListViewItem item = new ListViewItem(wrapper.Channel.Url);
-                item.SubItems.Add(wrapper.Channel.UserName);
-                item.SubItems.Add(wrapper.InUsing.ToString());
-
-
-                this.Channel_listView_channels.Items.Add(item);
-
-
-                _table[item] = wrapper.Channel;
-            }
-        }
-
-        private void button_returnChannel_Click(object sender, EventArgs e)
-        {
-            if (this.Channel_listView_channels.SelectedItems.Count == 0)
-            {
-                MessageBox.Show(this, "尚未选择要return的行");
-                return;
-            }
-
-            ListViewItem item = this.Channel_listView_channels.SelectedItems[0];
-
-            this._channelPool.ReturnChannel((RestChannel)this._table[item]);
-
-            this.ViewChannel();
-        }
-
-        private void button_clearChannel_Click(object sender, EventArgs e)
-        {
-            this._channelPool.Clear();
-            this.ViewChannel();
-        }
-
-
-        private void button_viewChannel_Click(object sender, EventArgs e)
-        {
-            this.ViewChannel();
-        }
-
-        #endregion
-
 
         private void button_getVersion_Click(object sender, EventArgs e)
         {
-            string url = this.Login_textBox_url.Text.Trim();
+            string url = this.Server_textBox_url.Text.Trim();
             RestChannel channel = this._channelPool.GetChannel(url, "");
             try
             {
@@ -141,11 +69,10 @@ namespace practice
                 long lRet = channel.GetVersion(out version, out error);
                 if (lRet == -1)
                 {
-                    this.Login_textBox_result.Text = "获取版本出错：" + error;
+                    this.textBox_result.Text = "获取版本出错：" + error;
                     return;
                 }
-
-                this.Login_textBox_result.Text =version;
+                this.textBox_result.Text =version;
             }
             finally
             {
@@ -155,15 +82,15 @@ namespace practice
 
         private void button_login_Click(object sender, EventArgs e)
         {
-            string url = this.Login_textBox_url.Text.Trim();
+            string url = this.Server_textBox_url.Text.Trim();
             RestChannel channel = this._channelPool.GetChannel(url, "");
             try
             {
-                string userName = this.Login_textBox_userName.Text.Trim();
-                string password = this.Login_textBox_password.Text.Trim();
-                if (userName == "" || password == "")
+                string userName = this.Server_textBox_userName.Text.Trim();
+                string password = this.Server_textBox_password.Text.Trim();
+                if (userName == "")
                 {
-                    MessageBox.Show(this, "用户名或密码不能为空");
+                    MessageBox.Show(this, "用户名不能为空");
                     return;
                 }
 
@@ -171,7 +98,7 @@ namespace practice
                 LoginResponse response = channel.Login(userName, password, parameters);
 
 
-                this.Login_textBox_result.Text = "Result:" + response.LoginResult.ErrorCode + response.LoginResult.ErrorInfo
+                this.textBox_result.Text = "Result:" + response.LoginResult.ErrorCode + response.LoginResult.ErrorInfo
                 + "\r\n Rights:" + response.strRights
                 + "\r\n UserName:" + response.strOutputUserName;
                         }
@@ -183,14 +110,14 @@ namespace practice
 
         private void button_logout_Click(object sender, EventArgs e)
         {
-            string url = this.Login_textBox_url.Text.Trim();
+            string url = this.Server_textBox_url.Text.Trim();
             RestChannel channel = this._channelPool.GetChannel(url, "");
             try
             {
                LogoutResponse response = channel.Logout();// (userName, password, parameters);
 
 
-                this.Login_textBox_result.Text = "Result:" + response.LogoutResult.ErrorCode + response.LogoutResult.ErrorInfo;
+                this.textBox_result.Text = "Result:" + response.LogoutResult.ErrorCode + response.LogoutResult.ErrorInfo;
             }
             finally
             {
@@ -198,9 +125,7 @@ namespace practice
             }
         }
 
-        private void tabPage_channel_Click(object sender, EventArgs e)
-        {
 
-        }
+
     }
 }

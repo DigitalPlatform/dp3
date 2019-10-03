@@ -18,7 +18,7 @@ namespace DigitalPlatform.RestClient
         /// </summary>
         public CookieContainer _cookies = new CookieContainer();
 
-        // todo 清掉什么信息？
+        // 关闭通道
         public void Close()
         {
             // 调logout接口
@@ -42,7 +42,6 @@ namespace DigitalPlatform.RestClient
                 byte[] result = client.UploadData(GetRestfulApiUrl("getversion"),
                         "POST",
                         data);
-
                 string strResult = Encoding.UTF8.GetString(result);
                 GetVersionResponse response = Deserialize<GetVersionResponse>(strResult);
                 version = response.GetVersionResult.ErrorInfo;
@@ -83,7 +82,6 @@ namespace DigitalPlatform.RestClient
             request.strPassword = strPassword;
             request.strParameters = strParameters;
             byte[] baData = Encoding.UTF8.GetBytes(Serialize(request));
-
             byte[] result = client.UploadData(this.GetRestfulApiUrl("login"),
                 "POST",
                 baData);
@@ -95,9 +93,12 @@ namespace DigitalPlatform.RestClient
         }
 
 
+        /// <summary>
+        /// 登出
+        /// </summary>
+        /// <returns></returns>
         public LogoutResponse Logout()
         {
-
             CookieAwareWebClient client = new CookieAwareWebClient(this._cookies);
             client.Headers["Content-type"] = "application/json; charset=utf-8";
 
@@ -107,12 +108,13 @@ namespace DigitalPlatform.RestClient
                 data);
 
             string strResult = Encoding.UTF8.GetString(result);
-
             LogoutResponse response = Deserialize<LogoutResponse>(strResult);
 
             return response;
-
         }
+
+
+
 
 
         #region 内部函数
