@@ -5,27 +5,16 @@ using System.Threading;
 
 namespace DigitalPlatform.RestClient
 {
-    /// <summary>
-    /// 通道包装对象
-    /// </summary>
-    public class ChannelWrapper
-    {
-        /// <summary>
-        /// 通道是否正在使用中
-        /// </summary>
-        public bool InUsing = false;
-
-        /// <summary>
-        /// 通道对象
-        /// </summary>
-        public RestChannel Channel = null;
-    }
-
     public class RestChannelPool : List<ChannelWrapper>
     {
         //允许多个线程同时处于读取模式，但同一时间只允许一个线程写入模式，因此也称作共享-独占锁
         internal ReaderWriterLockSlim m_lock = new ReaderWriterLockSlim();
         internal static int m_nLockTimeout = 5000;  // 5000=5秒
+
+        /// <summary>
+        /// 登录前事件
+        /// </summary>
+        public event BeforeLoginEventHandle BeforeLogin;
 
         /// <summary>
         /// 征用一个通道
@@ -53,7 +42,9 @@ namespace DigitalPlatform.RestClient
                     Url = strUrl,
                     UserName = strUserName
                 };
-                
+                channel.BeforeLogin -= new BeforeLoginEventHandle(channel_BeforeLogin);
+                channel.BeforeLogin += new BeforeLoginEventHandle(channel_BeforeLogin);
+
                 wrapper = new ChannelWrapper();
                 wrapper.Channel = channel;
                 wrapper.InUsing = true;
@@ -68,6 +59,12 @@ namespace DigitalPlatform.RestClient
             {
                 this.m_lock.ExitWriteLock(); //释放锁
             }
+        }
+
+        void channel_BeforeLogin(object sender, BeforeLoginEventArgs e)
+        {
+            if (this.BeforeLogin != null)
+                this.BeforeLogin(sender, e);
         }
 
         /// <summary>
@@ -125,11 +122,15 @@ namespace DigitalPlatform.RestClient
             return null;
         }
 
+        public int CleanChannel()
+        {
+            return _cleanChannel(true);
+        }
 
         // 清理不用的通道
         // return:
         //      清理掉的通道数目
-        int CleanChannel(bool bLock)
+        int _cleanChannel(bool bLock)
         {
             // 要需清理的放到内存里
             List<ChannelWrapper> deletes = new List<ChannelWrapper>();
@@ -161,7 +162,7 @@ namespace DigitalPlatform.RestClient
             // 关闭这些通道
             foreach (ChannelWrapper wrapper in deletes)
             {
-                //wrapper.Channel.BeforeLogin -= new BeforeLoginEventHandle(channel_BeforeLogin);
+                wrapper.Channel.BeforeLogin -= new BeforeLoginEventHandle(channel_BeforeLogin);
                 wrapper.Channel.Close();
             }
 
@@ -170,6 +171,21 @@ namespace DigitalPlatform.RestClient
 
     }
 
+    /// <summary>
+    /// 通道包装对象
+    /// </summary>
+    public class ChannelWrapper
+    {
+        /// <summary>
+        /// 通道是否正在使用中
+        /// </summary>
+        public bool InUsing = false;
+
+        /// <summary>
+        /// 通道对象
+        /// </summary>
+        public RestChannel Channel = null;
+    }
     public class LockException : Exception
     {
         /// <summary>

@@ -232,7 +232,8 @@ namespace DigitalPlatform.RestClient
         public LibraryServerResult GetVersionResult { get; set; }
     }
 
-    // Login()
+    #region Login()
+
     [DataContract]
     public class LoginRequest
     {
@@ -249,8 +250,10 @@ namespace DigitalPlatform.RestClient
     {
         [DataMember]
         public LibraryServerResult LoginResult { get; set; }
+
         [DataMember]
         public string strOutputUserName { get; set; }
+
         [DataMember]
         public string strRights { get; set; }
 
@@ -258,6 +261,9 @@ namespace DigitalPlatform.RestClient
         public string strLibraryCode { get; set; }
         
     }
+
+    #endregion
+
 
     // Logout()
     [DataContract]
@@ -436,7 +442,8 @@ namespace DigitalPlatform.RestClient
         public byte[] baOutputTimestamp { get; set; }
     }
 
-    // GetSearchResult()
+    #region GetSearchResult()
+
     [DataContract]
     public class GetSearchResultRequest
     {
@@ -499,6 +506,9 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public string From = "";
     }
+
+    #endregion
+
 
     [DataContract(Namespace = "http://dp2003.com/dp2kernel/")]
     public class Result
@@ -600,6 +610,8 @@ namespace DigitalPlatform.RestClient
         public string strBiblioRecPath { get; set; }
     }
 
+    #region GetBiblioInfo
+
     [DataContract]
     public class GetBiblioInfoRequest
     {
@@ -619,6 +631,11 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public string strBiblio { get; set; }
     }
+
+    #endregion
+
+
+    #region GetEntities
 
     [DataContract]
     public class GetEntitiesRequest
@@ -644,6 +661,9 @@ namespace DigitalPlatform.RestClient
         public EntityInfo[] entityinfos { get; set; }
     }
 
+    #endregion
+
+    #region GetBiblioSummary
 
     [DataContract]
     public class GetBiblioSummaryRequest
@@ -665,6 +685,8 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public string strSummary { get; set; }
     }
+
+    #endregion
 
     [DataContract(Namespace = "http://dp2003.com/dp2library/")]
     public enum MessageLevel
@@ -763,7 +785,8 @@ namespace DigitalPlatform.RestClient
         public long lAttachmentTotalLength { get; set; }
     }
 
-   
+
+    #region Borrow
 
     /*
         LibraryServerResult Borrow(
@@ -855,6 +878,10 @@ namespace DigitalPlatform.RestClient
 
     }
 
+    #endregion
+
+
+    #region Return
 
     //=======================
     /*
@@ -877,7 +904,6 @@ namespace DigitalPlatform.RestClient
                     out string strOutputReaderBarcode,
                     out ReturnInfo return_info);
     */
-
 
     [DataContract]
     public class ReturnRequest
@@ -978,6 +1004,12 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public string Location = "";
     }
+
+    #endregion
+
+
+
+    #region GetBrowseRecords
     /*
             string[] paths,
             string strBrowseInfoStyle,
@@ -1003,6 +1035,11 @@ namespace DigitalPlatform.RestClient
         public Record[] searchresults { get; set; }
     }
 
+
+    #endregion
+
+    #region GetSystemParameter
+
     [DataContract]
     public class GetSystemParameterRequest
     {
@@ -1021,6 +1058,8 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public string strValue { get; set; }
     }
+
+    #endregion
 
     [DataContract]
     public class SearchRequest
