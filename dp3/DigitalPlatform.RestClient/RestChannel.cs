@@ -55,6 +55,8 @@ namespace DigitalPlatform.RestClient
         }
 
 
+ 
+
         /// <summary>
         /// 登录。
         /// </summary>
@@ -182,6 +184,52 @@ namespace DigitalPlatform.RestClient
             return 1;   // 登录成功,可以重调API功能了
         }
 
+        // 2011/1/21
+        // 预约
+        // parameters:
+        //      strItemBarcodeList  册条码号列表，逗号间隔
+        // 权限：需要有reservation权限
+        public ReservationResponse Reservation(string action,
+            string strReaderBarcode,
+            string strItemBarcodeList)
+        {
+            string strError = "";
+
+        REDO:
+
+            CookieAwareWebClient client = new CookieAwareWebClient(this._cookies);
+            client.Headers["Content-type"] = "application/json; charset=utf-8";
+
+            ReservationRequest request = new ReservationRequest();
+            request.strFunction = action;
+            request.strReaderBarcode = strReaderBarcode;
+            request.strItemBarcodeList = strItemBarcodeList;
+
+            byte[] baData = Encoding.UTF8.GetBytes(Serialize(request));
+            string strRequest = Encoding.UTF8.GetString(baData);
+            byte[] result = client.UploadData(this.GetRestfulApiUrl("Reservation"),
+                            "POST",
+                             baData);
+
+            string strResult = Encoding.UTF8.GetString(result);
+            ReservationResponse response = Deserialize<ReservationResponse>(strResult);
+            // 未登录时，按需登录
+            if (response.ReservationResult.Value == -1
+                && response.ReservationResult.ErrorCode == ErrorCode.NotLogin)
+            {
+                if (DoNotLogin(out strError) == 1)
+                    goto REDO;
+
+                // 把按需登录的错误信息包括进去
+                if (string.IsNullOrEmpty(strError) == false)
+                {
+                    response.ReservationResult.ErrorInfo += "\r\n" + strError;
+                }
+            }
+
+            return response;
+        }
+
         // 检索书目
         public SearchBiblioResponse SearchBiblio(string strBiblioDbNames,
             string strQueryWord,
@@ -235,70 +283,6 @@ namespace DigitalPlatform.RestClient
         }
 
 
-        // 2011/1/21
-        // 预约
-        // parameters:
-        //      strItemBarcodeList  册条码号列表，逗号间隔
-        // 权限：需要有reservation权限
-        public long Reservation(
-            string strFunction,
-            string strReaderBarcode,
-            string strItemBarcodeList,
-            out string strError)
-        {
-            strError = "";
-
-            /*
-        REDO:
-
-            CookieAwareWebClient client = new CookieAwareWebClient(this._cookies);
-            client.Headers["Content-type"] = "application/json; charset=utf-8";
-
-            SearchBiblioRequest request = new SearchBiblioRequest();
-            request.strBiblioDbNames = strBiblioDbNames;
-
-
-            try
-            {
-                IAsyncResult soapresult = this.ws.BeginReservation(
-                    strFunction,
-                    strReaderBarcode,
-                    strItemBarcodeList,
-                    null,
-                    null);
-
-                WaitComplete(soapresult);
-
-                if (this.m_ws == null)
-                {
-                    strError = "用户中断";
-                    this.ErrorCode = localhost.ErrorCode.RequestCanceled;
-                    return -1;
-                }
-
-                LibraryServerResult result = this.ws.EndReservation(
-                    soapresult);
-                if (result.Value == -1 && result.ErrorCode == ErrorCode.NotLogin)
-                {
-                    if (DoNotLogin(ref strError) == 1)
-                        goto REDO;
-                    return -1;
-                }
-                strError = result.ErrorInfo;
-                this.ErrorCode = result.ErrorCode;
-                this.ClearRedoCount();
-                return result.Value;
-            }
-            catch (Exception ex)
-            {
-                int nRet = ConvertWebError(ex, out strError);
-                if (nRet == 0)
-                    return -1;
-                goto REDO;
-            }
-            */
-            return 0;
-        }
 
         /// <summary>
         /// 获得检索结果。

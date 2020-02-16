@@ -313,19 +313,15 @@ namespace practice
             RestChannel channel = this.GetChannel();
             try
             {
-                SearchBiblioResponse response = channel.SearchBiblio(this.SearchBiblio_textBox_BiblioDbNames.Text,
-                    this.SearchBiblio_textBox_QueryWord.Text,
-                    Convert.ToInt32(this.SearchBiblio_textBox_PerMax.Text),
-                    this.SearchBiblio_textBox_FromStyle.Text,
-                    this.SearchBiblio_comboBox_MatchStyle.Text,
-                    this.SearchBiblio_textBox_ResultSetName.Text,
-                    this.SearchBiblio_textBox_SearchStyle.Text); ;
+                ReservationResponse response = channel.Reservation(
+                    this.comboBox_Reservation_action.Text,
+                    this.textBox__Reservation_readerBarcode.Text,
+                    this.textBox_Reservation_itemBarcodeList.Text
+                    );
 
                 this.textBox_result.Text = "Result:"
-                    + response.SearchBiblioResult.ErrorCode 
-                    + response.SearchBiblioResult.ErrorInfo + "\r\n"
-                    + "count:" + response.SearchBiblioResult.Value.ToString() + "\r\n"
-                    + response.strQueryXml;
+                    + "ErrorCode:" + response.ReservationResult.ErrorCode
+                    + "\r\n" + "ErrorInfo:" + response.ReservationResult.ErrorInfo;
             }
             finally
             {

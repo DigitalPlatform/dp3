@@ -90,13 +90,13 @@ namespace DigitalPlatform.RestClient
     {
 
         [DataMember]
-        public string action { get; set; }
+        public string strFunction { get; set; }
 
         [DataMember]
-        public string readerBarcode { get; set; }
+        public string strReaderBarcode { get; set; }
 
         [DataMember]
-        public string itemBarcodeList { get; set; }
+        public string strItemBarcodeList { get; set; }
 
     }
 
@@ -105,7 +105,7 @@ namespace DigitalPlatform.RestClient
     public class ReservationResponse
     {
         [DataMember]
-        public LibraryServerResult Result { get; set; }
+        public LibraryServerResult ReservationResult { get; set; }
 
     }
 

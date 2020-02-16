@@ -83,18 +83,18 @@
             this.GetBiblioInfos_textBox_BiblioRecPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.tabPage_Reservation = new System.Windows.Forms.TabPage();
+            this.textBox_Reservation_itemBarcodeList = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.button__Reservation_start = new System.Windows.Forms.Button();
+            this.textBox__Reservation_readerBarcode = new System.Windows.Forms.TextBox();
+            this.label_Reservation_readerBarcode = new System.Windows.Forms.Label();
+            this.label_Reservation_action = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.通用练习题ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabPage_Reservation = new System.Windows.Forms.TabPage();
-            this.button__Reservation_start = new System.Windows.Forms.Button();
-            this.textBox__Reservation_readerBarcode = new System.Windows.Forms.TextBox();
-            this.textBox__Reservation_action = new System.Windows.Forms.TextBox();
-            this.label_Reservation_readerBarcode = new System.Windows.Forms.Label();
-            this.label_Reservation_action = new System.Windows.Forms.Label();
-            this.textBox_Reservation_itemBarcodeList = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
+            this.comboBox_Reservation_action = new System.Windows.Forms.ComboBox();
             this.tabPage_SearchBiblio.SuspendLayout();
             this.tabPage_Server.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -102,12 +102,12 @@
             this.tabPage_GetSearchResult.SuspendLayout();
             this.tabPage_GetBiblioInfo.SuspendLayout();
             this.tabPage_GetBiblioInfos.SuspendLayout();
+            this.tabPage_Reservation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.tabPage_Reservation.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage_SearchBiblio
@@ -683,6 +683,78 @@
             this.label18.TabIndex = 48;
             this.label18.Text = "BiblioRecPath:";
             // 
+            // tabPage_Reservation
+            // 
+            this.tabPage_Reservation.Controls.Add(this.comboBox_Reservation_action);
+            this.tabPage_Reservation.Controls.Add(this.textBox_Reservation_itemBarcodeList);
+            this.tabPage_Reservation.Controls.Add(this.label21);
+            this.tabPage_Reservation.Controls.Add(this.button__Reservation_start);
+            this.tabPage_Reservation.Controls.Add(this.textBox__Reservation_readerBarcode);
+            this.tabPage_Reservation.Controls.Add(this.label_Reservation_readerBarcode);
+            this.tabPage_Reservation.Controls.Add(this.label_Reservation_action);
+            this.tabPage_Reservation.Location = new System.Drawing.Point(4, 28);
+            this.tabPage_Reservation.Name = "tabPage_Reservation";
+            this.tabPage_Reservation.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Reservation.Size = new System.Drawing.Size(792, 576);
+            this.tabPage_Reservation.TabIndex = 7;
+            this.tabPage_Reservation.Text = "Reservation";
+            this.tabPage_Reservation.UseVisualStyleBackColor = true;
+            // 
+            // textBox_Reservation_itemBarcodeList
+            // 
+            this.textBox_Reservation_itemBarcodeList.Location = new System.Drawing.Point(174, 94);
+            this.textBox_Reservation_itemBarcodeList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox_Reservation_itemBarcodeList.Name = "textBox_Reservation_itemBarcodeList";
+            this.textBox_Reservation_itemBarcodeList.Size = new System.Drawing.Size(247, 28);
+            this.textBox_Reservation_itemBarcodeList.TabIndex = 57;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(21, 94);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(143, 18);
+            this.label21.TabIndex = 58;
+            this.label21.Text = "itemBarcodeList";
+            // 
+            // button__Reservation_start
+            // 
+            this.button__Reservation_start.Location = new System.Drawing.Point(174, 188);
+            this.button__Reservation_start.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button__Reservation_start.Name = "button__Reservation_start";
+            this.button__Reservation_start.Size = new System.Drawing.Size(178, 41);
+            this.button__Reservation_start.TabIndex = 56;
+            this.button__Reservation_start.Tag = "";
+            this.button__Reservation_start.Text = "start";
+            this.button__Reservation_start.UseVisualStyleBackColor = true;
+            this.button__Reservation_start.Click += new System.EventHandler(this.button__Reservation_start_Click);
+            // 
+            // textBox__Reservation_readerBarcode
+            // 
+            this.textBox__Reservation_readerBarcode.Location = new System.Drawing.Point(174, 52);
+            this.textBox__Reservation_readerBarcode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox__Reservation_readerBarcode.Name = "textBox__Reservation_readerBarcode";
+            this.textBox__Reservation_readerBarcode.Size = new System.Drawing.Size(247, 28);
+            this.textBox__Reservation_readerBarcode.TabIndex = 54;
+            // 
+            // label_Reservation_readerBarcode
+            // 
+            this.label_Reservation_readerBarcode.AutoSize = true;
+            this.label_Reservation_readerBarcode.Location = new System.Drawing.Point(21, 52);
+            this.label_Reservation_readerBarcode.Name = "label_Reservation_readerBarcode";
+            this.label_Reservation_readerBarcode.Size = new System.Drawing.Size(125, 18);
+            this.label_Reservation_readerBarcode.TabIndex = 55;
+            this.label_Reservation_readerBarcode.Text = "readerBarcode";
+            // 
+            // label_Reservation_action
+            // 
+            this.label_Reservation_action.AutoSize = true;
+            this.label_Reservation_action.Location = new System.Drawing.Point(21, 17);
+            this.label_Reservation_action.Name = "label_Reservation_action";
+            this.label_Reservation_action.Size = new System.Drawing.Size(62, 18);
+            this.label_Reservation_action.TabIndex = 53;
+            this.label_Reservation_action.Text = "action";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -728,85 +800,20 @@
             this.通用练习题ToolStripMenuItem.Text = "通用练习题";
             this.通用练习题ToolStripMenuItem.Click += new System.EventHandler(this.通用练习题ToolStripMenuItem_Click);
             // 
-            // tabPage_Reservation
+            // comboBox_Reservation_action
             // 
-            this.tabPage_Reservation.Controls.Add(this.textBox_Reservation_itemBarcodeList);
-            this.tabPage_Reservation.Controls.Add(this.label21);
-            this.tabPage_Reservation.Controls.Add(this.button__Reservation_start);
-            this.tabPage_Reservation.Controls.Add(this.textBox__Reservation_readerBarcode);
-            this.tabPage_Reservation.Controls.Add(this.textBox__Reservation_action);
-            this.tabPage_Reservation.Controls.Add(this.label_Reservation_readerBarcode);
-            this.tabPage_Reservation.Controls.Add(this.label_Reservation_action);
-            this.tabPage_Reservation.Location = new System.Drawing.Point(4, 28);
-            this.tabPage_Reservation.Name = "tabPage_Reservation";
-            this.tabPage_Reservation.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Reservation.Size = new System.Drawing.Size(792, 576);
-            this.tabPage_Reservation.TabIndex = 7;
-            this.tabPage_Reservation.Text = "Reservation";
-            this.tabPage_Reservation.UseVisualStyleBackColor = true;
-            // 
-            // button__Reservation_start
-            // 
-            this.button__Reservation_start.Location = new System.Drawing.Point(164, 265);
-            this.button__Reservation_start.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button__Reservation_start.Name = "button__Reservation_start";
-            this.button__Reservation_start.Size = new System.Drawing.Size(178, 41);
-            this.button__Reservation_start.TabIndex = 56;
-            this.button__Reservation_start.Tag = "";
-            this.button__Reservation_start.Text = "start";
-            this.button__Reservation_start.UseVisualStyleBackColor = true;
-            this.button__Reservation_start.Click += new System.EventHandler(this.button__Reservation_start_Click);
-            // 
-            // textBox__Reservation_readerBarcode
-            // 
-            this.textBox__Reservation_readerBarcode.Location = new System.Drawing.Point(174, 52);
-            this.textBox__Reservation_readerBarcode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox__Reservation_readerBarcode.Name = "textBox__Reservation_readerBarcode";
-            this.textBox__Reservation_readerBarcode.Size = new System.Drawing.Size(247, 28);
-            this.textBox__Reservation_readerBarcode.TabIndex = 54;
-            // 
-            // textBox__Reservation_action
-            // 
-            this.textBox__Reservation_action.Location = new System.Drawing.Point(174, 17);
-            this.textBox__Reservation_action.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox__Reservation_action.Name = "textBox__Reservation_action";
-            this.textBox__Reservation_action.Size = new System.Drawing.Size(247, 28);
-            this.textBox__Reservation_action.TabIndex = 52;
-            // 
-            // label_Reservation_readerBarcode
-            // 
-            this.label_Reservation_readerBarcode.AutoSize = true;
-            this.label_Reservation_readerBarcode.Location = new System.Drawing.Point(21, 52);
-            this.label_Reservation_readerBarcode.Name = "label_Reservation_readerBarcode";
-            this.label_Reservation_readerBarcode.Size = new System.Drawing.Size(125, 18);
-            this.label_Reservation_readerBarcode.TabIndex = 55;
-            this.label_Reservation_readerBarcode.Text = "readerBarcode";
-            // 
-            // label_Reservation_action
-            // 
-            this.label_Reservation_action.AutoSize = true;
-            this.label_Reservation_action.Location = new System.Drawing.Point(21, 17);
-            this.label_Reservation_action.Name = "label_Reservation_action";
-            this.label_Reservation_action.Size = new System.Drawing.Size(62, 18);
-            this.label_Reservation_action.TabIndex = 53;
-            this.label_Reservation_action.Text = "action";
-            // 
-            // textBox_Reservation_itemBarcodeList
-            // 
-            this.textBox_Reservation_itemBarcodeList.Location = new System.Drawing.Point(174, 94);
-            this.textBox_Reservation_itemBarcodeList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox_Reservation_itemBarcodeList.Name = "textBox_Reservation_itemBarcodeList";
-            this.textBox_Reservation_itemBarcodeList.Size = new System.Drawing.Size(247, 28);
-            this.textBox_Reservation_itemBarcodeList.TabIndex = 57;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(21, 94);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(143, 18);
-            this.label21.TabIndex = 58;
-            this.label21.Text = "itemBarcodeList";
+            this.comboBox_Reservation_action.FormattingEnabled = true;
+            this.comboBox_Reservation_action.Items.AddRange(new object[] {
+            "new",
+            "delete",
+            "merge",
+            "split"});
+            this.comboBox_Reservation_action.Location = new System.Drawing.Point(174, 17);
+            this.comboBox_Reservation_action.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox_Reservation_action.Name = "comboBox_Reservation_action";
+            this.comboBox_Reservation_action.Size = new System.Drawing.Size(247, 26);
+            this.comboBox_Reservation_action.TabIndex = 59;
+            this.comboBox_Reservation_action.Text = "delete";
             // 
             // Form_main
             // 
@@ -833,6 +840,8 @@
             this.tabPage_GetBiblioInfo.PerformLayout();
             this.tabPage_GetBiblioInfos.ResumeLayout(false);
             this.tabPage_GetBiblioInfos.PerformLayout();
+            this.tabPage_Reservation.ResumeLayout(false);
+            this.tabPage_Reservation.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -840,8 +849,6 @@
             this.splitContainer1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tabPage_Reservation.ResumeLayout(false);
-            this.tabPage_Reservation.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -912,9 +919,9 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button button__Reservation_start;
         private System.Windows.Forms.TextBox textBox__Reservation_readerBarcode;
-        private System.Windows.Forms.TextBox textBox__Reservation_action;
         private System.Windows.Forms.Label label_Reservation_readerBarcode;
         private System.Windows.Forms.Label label_Reservation_action;
+        private System.Windows.Forms.ComboBox comboBox_Reservation_action;
     }
 }
 
