@@ -31,8 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dp2analysis.service", "dp2a
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "practice", "practice\practice.csproj", "{141D1BD7-CBA4-402A-92AB-B176CD4C0394}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dp2mini", "dp2mini\dp2mini.csproj", "{4D46CB1B-41FF-40EC-B93F-1D95D52CF7CD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalPlatform.RestClient", "DigitalPlatform.RestClient\DigitalPlatform.RestClient.csproj", "{3A21CC16-68C4-4915-8E1B-4F47ADC8401B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallFaceCenterDemo", "CallFaceCenterDemo\CallFaceCenterDemo.csproj", "{4C574359-91BF-4697-B729-BA515B94F86A}"
@@ -161,14 +159,6 @@ Global
 		{141D1BD7-CBA4-402A-92AB-B176CD4C0394}.Release|Any CPU.Build.0 = Release|Any CPU
 		{141D1BD7-CBA4-402A-92AB-B176CD4C0394}.Release|x86.ActiveCfg = Release|Any CPU
 		{141D1BD7-CBA4-402A-92AB-B176CD4C0394}.Release|x86.Build.0 = Release|Any CPU
-		{4D46CB1B-41FF-40EC-B93F-1D95D52CF7CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D46CB1B-41FF-40EC-B93F-1D95D52CF7CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D46CB1B-41FF-40EC-B93F-1D95D52CF7CD}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4D46CB1B-41FF-40EC-B93F-1D95D52CF7CD}.Debug|x86.Build.0 = Debug|Any CPU
-		{4D46CB1B-41FF-40EC-B93F-1D95D52CF7CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D46CB1B-41FF-40EC-B93F-1D95D52CF7CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D46CB1B-41FF-40EC-B93F-1D95D52CF7CD}.Release|x86.ActiveCfg = Release|Any CPU
-		{4D46CB1B-41FF-40EC-B93F-1D95D52CF7CD}.Release|x86.Build.0 = Release|Any CPU
 		{3A21CC16-68C4-4915-8E1B-4F47ADC8401B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A21CC16-68C4-4915-8E1B-4F47ADC8401B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A21CC16-68C4-4915-8E1B-4F47ADC8401B}.Debug|x86.ActiveCfg = Debug|Any CPU

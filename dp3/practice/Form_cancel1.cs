@@ -62,7 +62,7 @@ namespace practice
                         // 没起作用
                         this.textBox_info.ScrollToCaret();
                     }
-                     ));
+                    ));
                 }
             }
             finally
