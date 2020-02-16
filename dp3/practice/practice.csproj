@@ -58,6 +58,12 @@
     <Compile Include="test\Form5.Designer.cs">
       <DependentUpon>Form5.cs</DependentUpon>
     </Compile>
+    <Compile Include="test\Form_c.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="test\Form_c.Designer.cs">
+      <DependentUpon>Form_c.cs</DependentUpon>
+    </Compile>
     <Compile Include="test\Form_cancel4.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="test\Form5.resx">
       <DependentUpon>Form5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="test\Form_c.resx">
+      <DependentUpon>Form_c.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="test\Form_cancel4.resx">
       <DependentUpon>Form_cancel4.cs</DependentUpon>

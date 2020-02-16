@@ -1,4 +1,5 @@
 ﻿using DigitalPlatform.RestClient;
+using practice.test;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -137,39 +138,7 @@ namespace practice
             Properties.Settings.Default.Save();
         }
 
-        #region 通用练习题
 
-        private void button_Cancel1_Click(object sender, EventArgs e)
-        {
-            Form_cancel1 dlg = new Form_cancel1();
-            dlg.ShowDialog(this);
-        }
-
-        private void button_cancel2_Click(object sender, EventArgs e)
-        {
-            Form_cancel2 dlg = new Form_cancel2();
-            dlg.ShowDialog(this);
-        }
-
-        private void button_cancel3_Click(object sender, EventArgs e)
-        {
-            Form_cancel3 dlg = new Form_cancel3();
-            dlg.ShowDialog(this);
-        }
-
-        private void button_cancel4_Click(object sender, EventArgs e)
-        {
-            Form_cancel4 dlg = new Form_cancel4();
-            dlg.ShowDialog(this);
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            Form5 dlg = new Form5();
-            dlg.ShowDialog(this);
-        }
-
-        #endregion
 
         #region 登录
 
@@ -326,7 +295,8 @@ namespace practice
 
         private void 通用练习题ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form_c dlg = new Form_c();
+            dlg.ShowDialog(this);
         }
     }
 }

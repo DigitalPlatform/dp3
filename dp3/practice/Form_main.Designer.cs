@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button_Cancel1 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button_cancel2 = new System.Windows.Forms.Button();
-            this.button_cancel4 = new System.Windows.Forms.Button();
-            this.button_cancel3 = new System.Windows.Forms.Button();
             this.tabPage_SearchBiblio = new System.Windows.Forms.TabPage();
             this.SearchBiblio_textBox_ResultSetName = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -93,7 +87,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.通用练习题ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabPage2.SuspendLayout();
             this.tabPage_SearchBiblio.SuspendLayout();
             this.tabPage_Server.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -107,78 +100,6 @@
             this.splitContainer1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.button_Cancel1);
-            this.tabPage2.Controls.Add(this.button5);
-            this.tabPage2.Controls.Add(this.button_cancel2);
-            this.tabPage2.Controls.Add(this.button_cancel4);
-            this.tabPage2.Controls.Add(this.button_cancel3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(764, 421);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "通用练习题";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // button_Cancel1
-            // 
-            this.button_Cancel1.Location = new System.Drawing.Point(32, 34);
-            this.button_Cancel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_Cancel1.Name = "button_Cancel1";
-            this.button_Cancel1.Size = new System.Drawing.Size(372, 36);
-            this.button_Cancel1.TabIndex = 1;
-            this.button_Cancel1.Text = "1个CancellationToken停止1个线程";
-            this.button_Cancel1.UseVisualStyleBackColor = true;
-            this.button_Cancel1.Click += new System.EventHandler(this.button_Cancel1_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(32, 350);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(372, 42);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "回调函数 与 事件";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button_cancel2
-            // 
-            this.button_cancel2.Location = new System.Drawing.Point(32, 95);
-            this.button_cancel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_cancel2.Name = "button_cancel2";
-            this.button_cancel2.Size = new System.Drawing.Size(372, 50);
-            this.button_cancel2.TabIndex = 2;
-            this.button_cancel2.Text = "多个CancellationToken停止1个线程";
-            this.button_cancel2.UseVisualStyleBackColor = true;
-            this.button_cancel2.Click += new System.EventHandler(this.button_cancel2_Click);
-            // 
-            // button_cancel4
-            // 
-            this.button_cancel4.Location = new System.Drawing.Point(32, 230);
-            this.button_cancel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_cancel4.Name = "button_cancel4";
-            this.button_cancel4.Size = new System.Drawing.Size(392, 92);
-            this.button_cancel4.TabIndex = 4;
-            this.button_cancel4.Text = "等待两个线程-控制按钮状态写在包裹的线程里\r\n线程函数返回一个对象\r\n浏览器控件";
-            this.button_cancel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_cancel4.UseVisualStyleBackColor = true;
-            this.button_cancel4.Click += new System.EventHandler(this.button_cancel4_Click);
-            // 
-            // button_cancel3
-            // 
-            this.button_cancel3.Location = new System.Drawing.Point(32, 168);
-            this.button_cancel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_cancel3.Name = "button_cancel3";
-            this.button_cancel3.Size = new System.Drawing.Size(372, 42);
-            this.button_cancel3.TabIndex = 3;
-            this.button_cancel3.Text = "等待两个线程";
-            this.button_cancel3.UseVisualStyleBackColor = true;
-            this.button_cancel3.Click += new System.EventHandler(this.button_cancel3_Click);
             // 
             // tabPage_SearchBiblio
             // 
@@ -202,7 +123,7 @@
             this.tabPage_SearchBiblio.Location = new System.Drawing.Point(4, 28);
             this.tabPage_SearchBiblio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage_SearchBiblio.Name = "tabPage_SearchBiblio";
-            this.tabPage_SearchBiblio.Size = new System.Drawing.Size(769, 608);
+            this.tabPage_SearchBiblio.Size = new System.Drawing.Size(769, 576);
             this.tabPage_SearchBiblio.TabIndex = 3;
             this.tabPage_SearchBiblio.Text = "SearchBiblio";
             this.tabPage_SearchBiblio.UseVisualStyleBackColor = true;
@@ -376,7 +297,7 @@
             this.textBox_result.Multiline = true;
             this.textBox_result.Name = "textBox_result";
             this.textBox_result.ReadOnly = true;
-            this.textBox_result.Size = new System.Drawing.Size(328, 420);
+            this.textBox_result.Size = new System.Drawing.Size(331, 575);
             this.textBox_result.TabIndex = 20;
             // 
             // tabPage_Server
@@ -391,7 +312,7 @@
             this.tabPage_Server.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage_Server.Name = "tabPage_Server";
             this.tabPage_Server.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage_Server.Size = new System.Drawing.Size(769, 608);
+            this.tabPage_Server.Size = new System.Drawing.Size(769, 576);
             this.tabPage_Server.TabIndex = 0;
             this.tabPage_Server.Text = "服务器信息";
             this.tabPage_Server.UseVisualStyleBackColor = true;
@@ -526,13 +447,12 @@
             this.tabControl1.Controls.Add(this.tabPage_GetSearchResult);
             this.tabControl1.Controls.Add(this.tabPage_GetBiblioInfo);
             this.tabControl1.Controls.Add(this.tabPage_GetBiblioInfos);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(772, 453);
+            this.tabControl1.Size = new System.Drawing.Size(777, 608);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage_GetSearchResult
@@ -548,7 +468,7 @@
             this.tabPage_GetSearchResult.Controls.Add(this.label14);
             this.tabPage_GetSearchResult.Location = new System.Drawing.Point(4, 28);
             this.tabPage_GetSearchResult.Name = "tabPage_GetSearchResult";
-            this.tabPage_GetSearchResult.Size = new System.Drawing.Size(769, 608);
+            this.tabPage_GetSearchResult.Size = new System.Drawing.Size(769, 576);
             this.tabPage_GetSearchResult.TabIndex = 4;
             this.tabPage_GetSearchResult.Text = "GetSearchResult";
             this.tabPage_GetSearchResult.UseVisualStyleBackColor = true;
@@ -642,7 +562,7 @@
             this.tabPage_GetBiblioInfo.Controls.Add(this.label20);
             this.tabPage_GetBiblioInfo.Location = new System.Drawing.Point(4, 28);
             this.tabPage_GetBiblioInfo.Name = "tabPage_GetBiblioInfo";
-            this.tabPage_GetBiblioInfo.Size = new System.Drawing.Size(769, 608);
+            this.tabPage_GetBiblioInfo.Size = new System.Drawing.Size(769, 576);
             this.tabPage_GetBiblioInfo.TabIndex = 5;
             this.tabPage_GetBiblioInfo.Text = "GetBiblioInfo";
             this.tabPage_GetBiblioInfo.UseVisualStyleBackColor = true;
@@ -702,7 +622,7 @@
             this.tabPage_GetBiblioInfos.Controls.Add(this.label18);
             this.tabPage_GetBiblioInfos.Location = new System.Drawing.Point(4, 28);
             this.tabPage_GetBiblioInfos.Name = "tabPage_GetBiblioInfos";
-            this.tabPage_GetBiblioInfos.Size = new System.Drawing.Size(769, 608);
+            this.tabPage_GetBiblioInfos.Size = new System.Drawing.Size(769, 576);
             this.tabPage_GetBiblioInfos.TabIndex = 6;
             this.tabPage_GetBiblioInfos.Text = "GetBiblioInfos";
             this.tabPage_GetBiblioInfos.UseVisualStyleBackColor = true;
@@ -755,7 +675,8 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(0, 187);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 32);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -766,8 +687,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.textBox_result);
-            this.splitContainer1.Size = new System.Drawing.Size(1111, 453);
-            this.splitContainer1.SplitterDistance = 772;
+            this.splitContainer1.Size = new System.Drawing.Size(1119, 608);
+            this.splitContainer1.SplitterDistance = 777;
             this.splitContainer1.TabIndex = 7;
             // 
             // menuStrip1
@@ -797,7 +718,7 @@
             this.通用练习题ToolStripMenuItem.Text = "通用练习题";
             this.通用练习题ToolStripMenuItem.Click += new System.EventHandler(this.通用练习题ToolStripMenuItem_Click);
             // 
-            // Form1
+            // Form_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -805,11 +726,10 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Form1";
+            this.Name = "Form_main";
             this.Text = "练习窗";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.tabPage2.ResumeLayout(false);
             this.tabPage_SearchBiblio.ResumeLayout(false);
             this.tabPage_SearchBiblio.PerformLayout();
             this.tabPage_Server.ResumeLayout(false);
@@ -836,13 +756,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button_Cancel1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button_cancel2;
-        private System.Windows.Forms.Button button_cancel4;
-        private System.Windows.Forms.Button button_cancel3;
         private System.Windows.Forms.TabPage tabPage_SearchBiblio;
         private System.Windows.Forms.TextBox textBox_result;
         private System.Windows.Forms.TabPage tabPage_Server;
