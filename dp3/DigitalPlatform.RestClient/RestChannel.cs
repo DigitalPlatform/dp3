@@ -235,6 +235,71 @@ namespace DigitalPlatform.RestClient
         }
 
 
+        // 2011/1/21
+        // 预约
+        // parameters:
+        //      strItemBarcodeList  册条码号列表，逗号间隔
+        // 权限：需要有reservation权限
+        public long Reservation(
+            string strFunction,
+            string strReaderBarcode,
+            string strItemBarcodeList,
+            out string strError)
+        {
+            strError = "";
+
+            /*
+        REDO:
+
+            CookieAwareWebClient client = new CookieAwareWebClient(this._cookies);
+            client.Headers["Content-type"] = "application/json; charset=utf-8";
+
+            SearchBiblioRequest request = new SearchBiblioRequest();
+            request.strBiblioDbNames = strBiblioDbNames;
+
+
+            try
+            {
+                IAsyncResult soapresult = this.ws.BeginReservation(
+                    strFunction,
+                    strReaderBarcode,
+                    strItemBarcodeList,
+                    null,
+                    null);
+
+                WaitComplete(soapresult);
+
+                if (this.m_ws == null)
+                {
+                    strError = "用户中断";
+                    this.ErrorCode = localhost.ErrorCode.RequestCanceled;
+                    return -1;
+                }
+
+                LibraryServerResult result = this.ws.EndReservation(
+                    soapresult);
+                if (result.Value == -1 && result.ErrorCode == ErrorCode.NotLogin)
+                {
+                    if (DoNotLogin(ref strError) == 1)
+                        goto REDO;
+                    return -1;
+                }
+                strError = result.ErrorInfo;
+                this.ErrorCode = result.ErrorCode;
+                this.ClearRedoCount();
+                return result.Value;
+            }
+            catch (Exception ex)
+            {
+                int nRet = ConvertWebError(ex, out strError);
+                if (nRet == 0)
+                    return -1;
+                goto REDO;
+            }
+            */
+            return 0;
+        }
+
         /// <summary>
         /// 获得检索结果。
         /// </summary>

@@ -1,0 +1,59 @@
+﻿    public enum ErrorCodeValue
+    {
+        [EnumMember]
+        NoError = 0,	 // 没有错误
+
+        [EnumMember]
+        CommonError = 1, // 一般性错误   -1
+
+        [EnumMember]
+        NotLogin = 2,	// 尚未登录 (Dir/ListTask)
+        [EnumMember]
+        UserNameEmpty = 3,	// 用户名为空 (Login)
+        [EnumMember]
+        UserNameOrPasswordMismatch = 4,	// 用户名或者密码错误 (Login)
+
+        //NoHasList = 5,     //没有列目录权限
+        //NoHasRead = 6,     //没有读权限          
+        //NoHasWrite = 7,    //没有写权限
+        //NoHasManagement = 8, //没有管理员权限
+
+        [EnumMember]
+        NotHasEnoughRights = 5, // 没有足够的权限 -6
+
+        [EnumMember]
+        TimestampMismatch = 9,  //时间戳不匹配   -2
+        [EnumMember]
+        NotFound = 10, //没找到记录       -4
+        [EnumMember]
+        EmptyContent = 11,   //空记录  -3
+
+        [EnumMember]
+        NotFoundDb = 12,  // 没找到数据库 -5
+        //OutOfRange = 13, // 范围越界
+        [EnumMember]
+        PathError = 14, // 路径不合法  -7
+
+        [EnumMember]
+        PartNotFound = 15, // 通过xpath未找到节点 -10
+
+        [EnumMember]
+        ExistDbInfo = 16,  //在新建库中，发现已经存在相同的信息 -11
+
+        [EnumMember]
+        AlreadyExist = 17,	//已经存在	-8
+        [EnumMember]
+        AlreadyExistOtherType = 18,		// 存在不同类型的项 -9
+
+        [EnumMember]
+        ApplicationStartError = 19,	//Application启动错误
+
+        [EnumMember]
+        NotFoundSubRes = 20,    // 部分下级资源记录不存在
+
+        [EnumMember]
+        Canceled = 21,    // 操作被放弃 2011/1/19
+
+        [EnumMember]
+        AccessDenied = 22,  // 权限不够 2011/2/11
+    };

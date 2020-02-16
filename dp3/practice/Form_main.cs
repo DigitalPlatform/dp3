@@ -138,7 +138,11 @@ namespace practice
             Properties.Settings.Default.Save();
         }
 
-
+        private void 通用练习题ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form_c dlg = new Form_c();
+            dlg.ShowDialog(this);
+        }
 
         #region 登录
 
@@ -293,10 +297,29 @@ namespace practice
             //todo 结构还没写
         }
 
-        private void 通用练习题ToolStripMenuItem_Click(object sender, EventArgs e)
+
+
+        private void button__Reservation_start_Click(object sender, EventArgs e)
         {
-            Form_c dlg = new Form_c();
-            dlg.ShowDialog(this);
+            RestChannel channel = this.GetChannel();
+            try
+            {
+                SearchBiblioResponse ret = channel.SearchBiblio(this.SearchBiblio_textBox_BiblioDbNames.Text,
+                    this.SearchBiblio_textBox_QueryWord.Text,
+                    Convert.ToInt32(this.SearchBiblio_textBox_PerMax.Text),
+                    this.SearchBiblio_textBox_FromStyle.Text,
+                    this.SearchBiblio_comboBox_MatchStyle.Text,
+                    this.SearchBiblio_textBox_ResultSetName.Text,
+                    this.SearchBiblio_textBox_SearchStyle.Text); ;
+
+                this.textBox_result.Text = "Result:" + ret.SearchBiblioResult.ErrorCode + ret.SearchBiblioResult.ErrorInfo + "\r\n"
+                    + "count:" + ret.SearchBiblioResult.Value.ToString() + "\r\n"
+                    + ret.strQueryXml;
+            }
+            finally
+            {
+                this._channelPool.ReturnChannel(channel);
+            }
         }
     }
 }

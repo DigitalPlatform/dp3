@@ -6,67 +6,30 @@ using System.Runtime.Serialization;
 
 namespace DigitalPlatform.RestClient
 {
-    public enum ErrorCodeValue
+
+
+
+    #region 返回值结构
+
+    // API函数结果
+    [DataContract]
+    public class LibraryServerResult
     {
-        [EnumMember]
-        NoError = 0,	 // 没有错误
-        [EnumMember]
-        CommonError = 1, // 一般性错误   -1
+        [DataMember]
+        public long Value { get; set; }
 
-        [EnumMember]
-        NotLogin = 2,	// 尚未登录 (Dir/ListTask)
-        [EnumMember]
-        UserNameEmpty = 3,	// 用户名为空 (Login)
-        [EnumMember]
-        UserNameOrPasswordMismatch = 4,	// 用户名或者密码错误 (Login)
+        [DataMember]
+        public string ErrorInfo { get; set; }
 
-        //NoHasList = 5,     //没有列目录权限
-        //NoHasRead = 6,     //没有读权限          
-        //NoHasWrite = 7,    //没有写权限
-        //NoHasManagement = 8, //没有管理员权限
+        [DataMember]
+        public ErrorCode ErrorCode { get; set; }
 
-        [EnumMember]
-        NotHasEnoughRights = 5, // 没有足够的权限 -6
+        //[DataMember]
+        //public ErrorCodeValue ErrorCode = ErrorCodeValue.NoError;
+        //[DataMember]
+        //public string ErrorString = "错误信息未初始化...";
+    }
 
-        [EnumMember]
-        TimestampMismatch = 9,  //时间戳不匹配   -2
-        [EnumMember]
-        NotFound = 10, //没找到记录       -4
-        [EnumMember]
-        EmptyContent = 11,   //空记录  -3
-
-        [EnumMember]
-        NotFoundDb = 12,  // 没找到数据库 -5
-        //OutOfRange = 13, // 范围越界
-        [EnumMember]
-        PathError = 14, // 路径不合法  -7
-
-        [EnumMember]
-        PartNotFound = 15, // 通过xpath未找到节点 -10
-
-        [EnumMember]
-        ExistDbInfo = 16,  //在新建库中，发现已经存在相同的信息 -11
-
-        [EnumMember]
-        AlreadyExist = 17,	//已经存在	-8
-        [EnumMember]
-        AlreadyExistOtherType = 18,		// 存在不同类型的项 -9
-
-        [EnumMember]
-        ApplicationStartError = 19,	//Application启动错误
-
-        [EnumMember]
-        NotFoundSubRes = 20,    // 部分下级资源记录不存在
-
-        [EnumMember]
-        Canceled = 21,    // 操作被放弃 2011/1/19
-
-        [EnumMember]
-        AccessDenied = 22,  // 权限不够 2011/2/11
-    };
-
-
-    #region dp2Library数据结构
     // dp2Library API错误码
     public enum ErrorCode
     {
@@ -112,21 +75,43 @@ namespace DigitalPlatform.RestClient
         TimestampMismatch = 113,
     }
 
-    // API函数结果
+
+
+
+
+    #endregion
+
+
+    #region Reservation
+
+    // SearchBiblioRequest
     [DataContract]
-    public class LibraryServerResult
+    public class ReservationRequest
+    {
+
+        [DataMember]
+        public string action { get; set; }
+
+        [DataMember]
+        public string readerBarcode { get; set; }
+
+        [DataMember]
+        public string itemBarcodeList { get; set; }
+
+    }
+
+    //SearchBiblioResult
+    [DataContract]
+    public class ReservationResponse
     {
         [DataMember]
-        public long Value { get; set; }
-        [DataMember]
-        public string ErrorInfo { get; set; }
-        [DataMember]
-        public ErrorCode ErrorCode { get; set; }
+        public LibraryServerResult Result { get; set; }
+
     }
 
     #endregion
 
-    #region API 参数 打包解包
+    #region ManageDatabase
 
     /*
         // 管理数据库
@@ -162,6 +147,10 @@ namespace DigitalPlatform.RestClient
 
     }
 
+    #endregion
+
+
+    #region VerifyBarcode
 
     // 校验条码号
     // parameters:
@@ -187,6 +176,10 @@ namespace DigitalPlatform.RestClient
 
     }
 
+    #endregion
+
+
+    #region SearchBiblio
 
     // SearchBiblioRequest
     [DataContract]
@@ -224,6 +217,10 @@ namespace DigitalPlatform.RestClient
         public string strQueryXml { get; set; }
     }
 
+    #endregion
+
+    #region GetVersion
+
     // GetVersion()
     [DataContract]
     public class GetVersionResponse
@@ -231,6 +228,8 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public LibraryServerResult GetVersionResult { get; set; }
     }
+
+    #endregion
 
     #region Login()
 
@@ -264,6 +263,7 @@ namespace DigitalPlatform.RestClient
 
     #endregion
 
+    #region logout
 
     // Logout()
     [DataContract]
@@ -272,6 +272,10 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public LibraryServerResult LogoutResult { get; set; }
     }
+
+    #endregion
+
+    #region SetLang
 
     // SetLang()
     [DataContract]
@@ -289,6 +293,10 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public string strOldLang { get; set; }
     }
+
+    #endregion
+
+    #region GetReaderInfo
 
     // GetReaderInfo
     [DataContract]
@@ -312,6 +320,10 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public byte[] baTimestamp { get; set; }
     }
+
+    #endregion
+
+    #region SetReaderInfo
 
     // SetReaderInfo
     [DataContract]
@@ -342,9 +354,14 @@ namespace DigitalPlatform.RestClient
         public string strSavedRecPath { get; set; }
         [DataMember]
         public byte[] baNewTimestamp { get; set; }
-        [DataMember]
-        public ErrorCodeValue kernel_errorcode { get; set; }
+
+        //[DataMember]
+        //public ErrorCodeValue kernel_errorcode { get; set; }
     }
+
+    #endregion
+
+    #region VerifyReader
 
     // VerifyReaderPassword
     [DataContract]
@@ -363,7 +380,10 @@ namespace DigitalPlatform.RestClient
         public LibraryServerResult VerifyReaderPasswordResult { get; set; }
     }
 
-    // ChangeReaderPassword
+    #endregion
+
+    #region ChangeReaderPassword
+
     [DataContract]
     public class ChangeReaderPasswordRequest
     {
@@ -381,6 +401,11 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public LibraryServerResult ChangeReaderPasswordResult { get; set; }
     }
+
+    #endregion
+
+
+    #region WriteRes
 
     // WriteRes()
     [DataContract]
@@ -413,6 +438,10 @@ namespace DigitalPlatform.RestClient
         public byte[] baOutputTimestamp { get; set; }
     }
 
+    #endregion
+
+    #region GetRes
+
     [DataContract]
     public class GetResRequest
     {
@@ -442,6 +471,8 @@ namespace DigitalPlatform.RestClient
         public byte[] baOutputTimestamp { get; set; }
     }
 
+    #endregion
+
     #region GetSearchResult()
 
     [DataContract]
@@ -468,6 +499,7 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public Record[] searchresults { get; set; }
     }
+
     [DataContract(Namespace = "http://dp2003.com/dp2kernel/")]
     public class Record
     {
@@ -497,6 +529,18 @@ namespace DigitalPlatform.RestClient
     }
 
     [DataContract(Namespace = "http://dp2003.com/dp2kernel/")]
+    public class Result
+    {
+        [DataMember]
+        public long Value = 0; // 命中条数，>=0:正常;<0:出错
+
+        //[DataMember]
+        //public ErrorCodeValue ErrorCode = ErrorCodeValue.NoError;
+        [DataMember]
+        public string ErrorString = "错误信息未初始化...";
+    }
+
+    [DataContract(Namespace = "http://dp2003.com/dp2kernel/")]
     public class KeyFrom
     {
         [DataMember]
@@ -510,47 +554,12 @@ namespace DigitalPlatform.RestClient
     #endregion
 
 
-    [DataContract(Namespace = "http://dp2003.com/dp2kernel/")]
-    public class Result
-    {
-        [DataMember]
-        public long Value = 0; // 命中条数，>=0:正常;<0:出错
 
-        [DataMember]
-        public ErrorCodeValue ErrorCode = ErrorCodeValue.NoError;
-        [DataMember]
-        public string ErrorString = "错误信息未初始化...";
-    }
 
-    [DataContract(Namespace = "http://dp2003.com/dp2library/")]
-    public class EntityInfo
-    {
-        [DataMember]
-        public string RefID = "";  // 参考ID
-        [DataMember]
-        public string OldRecPath = "";  // 旧记录路径
-        [DataMember]
-        public string OldRecord = "";   // 旧记录
-        [DataMember]
-        public byte[] OldTimestamp = null;  // 旧记录的时间戳
 
-        [DataMember]
-        public string NewRecPath = ""; // 新记录路径
-        [DataMember]
-        public string NewRecord = "";   // 新记录
-        [DataMember]
-        public byte[] NewTimestamp = null;  // 新记录的时间戳
 
-        [DataMember]
-        public string Action = "";   // 要执行的操作(get时此项无用)
-        [DataMember]
-        public string Style = "";   // 附加的特性参数
 
-        [DataMember]
-        public string ErrorInfo = "";   // 出错信息
-        [DataMember]
-        public ErrorCodeValue ErrorCode = ErrorCodeValue.NoError;   // 错误码
-    }
+    #region SearchReader
 
     //searchReader
     [DataContract]
@@ -582,6 +591,10 @@ namespace DigitalPlatform.RestClient
         public LibraryServerResult SearchReaderResult { get; set; }
     }
 
+    #endregion
+
+    #region GetItemInfo
+
     //getItemInfo
     [DataContract]
     public class GetItemInfoRequest
@@ -609,6 +622,8 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public string strBiblioRecPath { get; set; }
     }
+
+    #endregion
 
     #region GetBiblioInfo
 
@@ -661,6 +676,37 @@ namespace DigitalPlatform.RestClient
         public EntityInfo[] entityinfos { get; set; }
     }
 
+    [DataContract(Namespace = "http://dp2003.com/dp2library/")]
+    public class EntityInfo
+    {
+        [DataMember]
+        public string RefID = "";  // 参考ID
+        [DataMember]
+        public string OldRecPath = "";  // 旧记录路径
+        [DataMember]
+        public string OldRecord = "";   // 旧记录
+        [DataMember]
+        public byte[] OldTimestamp = null;  // 旧记录的时间戳
+
+        [DataMember]
+        public string NewRecPath = ""; // 新记录路径
+        [DataMember]
+        public string NewRecord = "";   // 新记录
+        [DataMember]
+        public byte[] NewTimestamp = null;  // 新记录的时间戳
+
+        [DataMember]
+        public string Action = "";   // 要执行的操作(get时此项无用)
+        [DataMember]
+        public string Style = "";   // 附加的特性参数
+
+        [DataMember]
+        public string ErrorInfo = "";   // 出错信息
+
+        //[DataMember]
+        //public ErrorCodeValue ErrorCode = ErrorCodeValue.NoError;   // 错误码
+    }
+
     #endregion
 
     #region GetBiblioSummary
@@ -687,6 +733,8 @@ namespace DigitalPlatform.RestClient
     }
 
     #endregion
+
+    #region ListMessage
 
     [DataContract(Namespace = "http://dp2003.com/dp2library/")]
     public enum MessageLevel
@@ -755,6 +803,9 @@ namespace DigitalPlatform.RestClient
         public byte[] TimeStamp = null;
     }
 
+    #endregion
+
+    #region GetOperLog
 
     [DataContract]
     public class GetOperLogRequest
@@ -784,6 +835,8 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public long lAttachmentTotalLength { get; set; }
     }
+
+    #endregion
 
 
     #region Borrow
@@ -879,7 +932,6 @@ namespace DigitalPlatform.RestClient
     }
 
     #endregion
-
 
     #region Return
 
@@ -1008,7 +1060,6 @@ namespace DigitalPlatform.RestClient
     #endregion
 
 
-
     #region GetBrowseRecords
     /*
             string[] paths,
@@ -1060,6 +1111,8 @@ namespace DigitalPlatform.RestClient
     }
 
     #endregion
+
+    #region Search
 
     [DataContract]
     public class SearchRequest
