@@ -32,7 +32,7 @@ namespace dp2analysis.service
         private dp2analysisService()
         {
             // 通道池对象
-            _channelPool = new LibraryChannelPool();
+            _channelPool = new RestChannelPool();
             _channelPool.BeforeLogin -= new BeforeLoginEventHandle(_channelPool_BeforeLogin);
             _channelPool.BeforeLogin += new BeforeLoginEventHandle(_channelPool_BeforeLogin);
         }
@@ -41,7 +41,7 @@ namespace dp2analysis.service
 
 
         #region 按需登录
-        internal LibraryChannelPool _channelPool = null;// new LibraryChannelPool();
+        internal RestChannelPool _channelPool = null;// new LibraryChannelPool();
 
         public string dp2ServerUrl { get; set; }
         public string dp2Username { get; set; }
@@ -60,7 +60,7 @@ namespace dp2analysis.service
             e.Password = this.dp2Password;
         }
 
-        public void ReturnChannel(LibraryChannel channel)
+        public void ReturnChannel(RestChannel channel)
         {
             this._channelPool.ReturnChannel(channel);
         }
@@ -75,7 +75,7 @@ namespace dp2analysis.service
         {
             error = "";
 
-            LibraryChannel channel = this._channelPool.GetChannel(serverUrl,
+            RestChannel channel = this._channelPool.GetChannel(serverUrl,
                 userName);
             try
             {
@@ -107,11 +107,11 @@ namespace dp2analysis.service
 
         #endregion
 
-        public  LibraryChannel GetChannel()
+        public  RestChannel GetChannel()
         {
 
 
-            LibraryChannel channel = this._channelPool.GetChannel(this.dp2ServerUrl, 
+            RestChannel channel = this._channelPool.GetChannel(this.dp2ServerUrl, 
                 this.dp2Username);
             //channel.Idle
            // _channelList.Add(channel);

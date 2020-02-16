@@ -186,6 +186,7 @@ namespace DigitalPlatform.RestClient
         /// </summary>
         public RestChannel Channel = null;
     }
+
     public class LockException : Exception
     {
         /// <summary>

@@ -140,9 +140,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DigitalPlatform.RestClient\DigitalPlatform.RestClient.csproj">
-      <Project>{3a21cc16-68c4-4915-8e1b-4f47adc8401b}</Project>
-      <Name>DigitalPlatform.RestClient</Name>
+    <ProjectReference Include="..\..\dp-library\DigitalPlatform.LibraryRestClient\DigitalPlatform.LibraryRestClient.csproj">
+      <Project>{c7c60a11-afc6-4cf2-898f-1f0e2d8d1fa0}</Project>
+      <Name>DigitalPlatform.LibraryRestClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

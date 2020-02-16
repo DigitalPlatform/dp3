@@ -1,4 +1,4 @@
-﻿using DigitalPlatform.RestClient;
+﻿using DigitalPlatform.LibraryRestClient;
 using practice.test;
 using System;
 using System.Collections;
@@ -230,19 +230,26 @@ namespace practice
             RestChannel channel = this.GetChannel();
             try
             {
-                SearchBiblioResponse response = channel.SearchBiblio(this.SearchBiblio_textBox_BiblioDbNames.Text,
+                //SearchBiblioResponse response 
+                long lRet= channel.SearchBiblio(this.SearchBiblio_textBox_BiblioDbNames.Text,
                     this.SearchBiblio_textBox_QueryWord.Text,
                     Convert.ToInt32(this.SearchBiblio_textBox_PerMax.Text),
                     this.SearchBiblio_textBox_FromStyle.Text,
                     this.SearchBiblio_comboBox_MatchStyle.Text,
                     this.SearchBiblio_textBox_ResultSetName.Text,
-                    this.SearchBiblio_textBox_SearchStyle.Text); ;
+                    this.SearchBiblio_textBox_SearchStyle.Text,
+                    out string strQueryXml,
+            out string strError);
 
-                this.textBox_result.Text = "Result:" 
-                    + response.SearchBiblioResult.ErrorCode 
-                    + response.SearchBiblioResult.ErrorInfo + "\r\n"
-                    + "count:" + response.SearchBiblioResult.Value.ToString()+"\r\n"
-                    + response.strQueryXml;
+                if (lRet == -1)
+                {
+                    this.textBox_result.Text = "error:" + strError;
+                }
+                else
+                {
+                    this.textBox_result.Text = "count:" + lRet + "\r\n"
+                        + strQueryXml;
+                }
             }
             finally
             {
@@ -255,20 +262,24 @@ namespace practice
             RestChannel channel = this.GetChannel();
             try
             {
-                GetSearchResultResponse response = channel.GetSearchResult(this.GetSearchResult_textBox_ResultSetName.Text,
+                //GetSearchResultResponse response
+                long lRet = channel.GetSearchResult(this.GetSearchResult_textBox_ResultSetName.Text,
                     Convert.ToInt64(this.GetSearchResult_textBox_Start.Text),
                     Convert.ToInt64(this.GetSearchResult_textBox_Count.Text),
-                    this.GetSearchResult_textBox_BrowseInfoStyle.Text);
+                    this.GetSearchResult_textBox_BrowseInfoStyle.Text,
+                    "",
+                    out Record[] records,
+                    out string strError);
 
-                this.textBox_result.Text = "Result:" 
-                    + response.GetSearchResultResult.ErrorCode 
-                    + response.GetSearchResultResult.ErrorInfo + "\r\n"
-                    + "count:" + response.GetSearchResultResult.Value.ToString() + "\r\n";
+                if (lRet == -1)
+                {
+                    this.textBox_result.Text = "errorInfo:" + strError;
+                }
 
-                if (response.searchresults.Length > 0)
+                if (records !=null && records.Length > 0)
                 {
                     StringBuilder browse = new StringBuilder();
-                    foreach (Record record in response.searchresults)
+                    foreach (Record record in records)
                     {
                         browse.AppendLine( string.Join(",", record.Cols));
                     }

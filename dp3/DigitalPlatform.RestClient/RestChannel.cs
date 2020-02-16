@@ -16,7 +16,7 @@ namespace DigitalPlatform.RestClient
         /// <summary>
         /// 当前通道所使用的 HTTP Cookies
         /// </summary>
-        public CookieContainer _cookies = new CookieContainer();
+        private CookieContainer _cookies = new CookieContainer();
 
         // 重登录次数
         int _loginCount = 0;

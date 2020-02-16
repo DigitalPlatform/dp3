@@ -136,7 +136,7 @@ namespace dp2analysis
             int nRet = 0;
             int nCount = 0;
 
-            LibraryChannel channel = dp2analysisService.Instance.GetChannel();
+            RestChannel channel = dp2analysisService.Instance.GetChannel();
             try
             {
                 while (token.IsCancellationRequested == false)
