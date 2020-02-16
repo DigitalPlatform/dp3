@@ -13,12 +13,12 @@ using System.Windows.Forms;
 
 namespace practice
 {
-    public partial class Form1 : Form
+    public partial class Form_main : Form
     {
         // 通道池
         RestChannelPool _channelPool = new RestChannelPool();
 
-        public Form1()
+        public Form_main()
         {
             InitializeComponent();
         }
@@ -322,6 +322,11 @@ namespace practice
         private void button_GetBiblioInfos_Click(object sender, EventArgs e)
         {
             //todo 结构还没写
+        }
+
+        private void 通用练习题ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

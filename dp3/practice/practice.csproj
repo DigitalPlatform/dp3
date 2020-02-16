@@ -46,61 +46,61 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Form_main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Form_main.Designer.cs">
+      <DependentUpon>Form_main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form5.cs">
+    <Compile Include="test\Form5.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form5.Designer.cs">
+    <Compile Include="test\Form5.Designer.cs">
       <DependentUpon>Form5.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_cancel4.cs">
+    <Compile Include="test\Form_cancel4.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_cancel4.Designer.cs">
+    <Compile Include="test\Form_cancel4.Designer.cs">
       <DependentUpon>Form_cancel4.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_cancel3.cs">
+    <Compile Include="test\Form_cancel3.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_cancel3.Designer.cs">
+    <Compile Include="test\Form_cancel3.Designer.cs">
       <DependentUpon>Form_cancel3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_cancel2.cs">
+    <Compile Include="test\Form_cancel2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_cancel2.Designer.cs">
+    <Compile Include="test\Form_cancel2.Designer.cs">
       <DependentUpon>Form_cancel2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_cancel1.cs">
+    <Compile Include="test\Form_cancel1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_cancel1.Designer.cs">
+    <Compile Include="test\Form_cancel1.Designer.cs">
       <DependentUpon>Form_cancel1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Worker.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Form_main.resx">
+      <DependentUpon>Form_main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form5.resx">
+    <EmbeddedResource Include="test\Form5.resx">
       <DependentUpon>Form5.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_cancel4.resx">
+    <EmbeddedResource Include="test\Form_cancel4.resx">
       <DependentUpon>Form_cancel4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_cancel3.resx">
+    <EmbeddedResource Include="test\Form_cancel3.resx">
       <DependentUpon>Form_cancel3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_cancel2.resx">
+    <EmbeddedResource Include="test\Form_cancel2.resx">
       <DependentUpon>Form_cancel2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_cancel1.resx">
+    <EmbeddedResource Include="test\Form_cancel1.resx">
       <DependentUpon>Form_cancel1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
