@@ -258,7 +258,7 @@ namespace DigitalPlatform.RestClient
 
         [DataMember]
         public string strLibraryCode { get; set; }
-        
+
     }
 
     #endregion
@@ -727,7 +727,7 @@ namespace DigitalPlatform.RestClient
         [DataMember]
         public LibraryServerResult GetBiblioSummaryResult { get; set; }
         [DataMember]
-        public string strBiblioRecPath { get;set;}
+        public string strBiblioRecPath { get; set; }
         [DataMember]
         public string strSummary { get; set; }
     }
@@ -968,7 +968,7 @@ namespace DigitalPlatform.RestClient
         public string strItemBarcode { get; set; }
         [DataMember]
         public string strConfirmItemRecPath { get; set; }
-        
+
         //======
         [DataMember]
         public bool bForce { get; set; }

@@ -151,13 +151,13 @@ namespace practice
             RestChannel channel = this.GetChannel();
             try
             {
-                GetVersionResponse ret= channel.GetVersion();
-                if (ret.GetVersionResult.Value == -1)
+                GetVersionResponse response= channel.GetVersion();
+                if (response.GetVersionResult.Value == -1)
                 {
-                    this.textBox_result.Text = "获取版本出错：" + ret.GetVersionResult.ErrorInfo;
+                    this.textBox_result.Text = "获取版本出错：" + response.GetVersionResult.ErrorInfo;
                     return;
                 }
-                this.textBox_result.Text =ret.GetVersionResult.ErrorInfo;
+                this.textBox_result.Text = response.GetVersionResult.ErrorInfo;
             }
             finally
             {
@@ -194,9 +194,11 @@ namespace practice
                     this.textBox_result.Text = "登录失败\r\n";
                 }
 
-                this.textBox_result.Text += "Result:" + response.LoginResult.ErrorCode + response.LoginResult.ErrorInfo + "\r\n"
-                + "Rights:" + response.strRights + "\r\n"
-                + "UserName:" + response.strOutputUserName;
+                this.textBox_result.Text += "Result:" 
+                    + response.LoginResult.ErrorCode 
+                    + response.LoginResult.ErrorInfo + "\r\n"
+                    + "Rights:" + response.strRights + "\r\n"
+                    + "UserName:" + response.strOutputUserName;
             }
             finally
             {
@@ -210,7 +212,9 @@ namespace practice
             try
             {
                LogoutResponse response = channel.Logout();
-                this.textBox_result.Text = "Result:" + response.LogoutResult.ErrorCode + response.LogoutResult.ErrorInfo;
+                this.textBox_result.Text = "Result:" 
+                    + response.LogoutResult.ErrorCode 
+                    + response.LogoutResult.ErrorInfo;
             }
             finally
             {
@@ -226,7 +230,7 @@ namespace practice
             RestChannel channel = this.GetChannel();
             try
             {
-                SearchBiblioResponse ret = channel.SearchBiblio(this.SearchBiblio_textBox_BiblioDbNames.Text,
+                SearchBiblioResponse response = channel.SearchBiblio(this.SearchBiblio_textBox_BiblioDbNames.Text,
                     this.SearchBiblio_textBox_QueryWord.Text,
                     Convert.ToInt32(this.SearchBiblio_textBox_PerMax.Text),
                     this.SearchBiblio_textBox_FromStyle.Text,
@@ -234,9 +238,11 @@ namespace practice
                     this.SearchBiblio_textBox_ResultSetName.Text,
                     this.SearchBiblio_textBox_SearchStyle.Text); ;
 
-                this.textBox_result.Text = "Result:" + ret.SearchBiblioResult.ErrorCode + ret.SearchBiblioResult.ErrorInfo + "\r\n"
-                    + "count:" + ret.SearchBiblioResult.Value.ToString()+"\r\n"
-                    + ret.strQueryXml;
+                this.textBox_result.Text = "Result:" 
+                    + response.SearchBiblioResult.ErrorCode 
+                    + response.SearchBiblioResult.ErrorInfo + "\r\n"
+                    + "count:" + response.SearchBiblioResult.Value.ToString()+"\r\n"
+                    + response.strQueryXml;
             }
             finally
             {
@@ -249,18 +255,20 @@ namespace practice
             RestChannel channel = this.GetChannel();
             try
             {
-                GetSearchResultResponse ret= channel.GetSearchResult(this.GetSearchResult_textBox_ResultSetName.Text,
+                GetSearchResultResponse response = channel.GetSearchResult(this.GetSearchResult_textBox_ResultSetName.Text,
                     Convert.ToInt64(this.GetSearchResult_textBox_Start.Text),
                     Convert.ToInt64(this.GetSearchResult_textBox_Count.Text),
                     this.GetSearchResult_textBox_BrowseInfoStyle.Text);
 
-                this.textBox_result.Text = "Result:" + ret.GetSearchResultResult.ErrorCode + ret.GetSearchResultResult.ErrorInfo + "\r\n"
-    + "count:" + ret.GetSearchResultResult.Value.ToString() + "\r\n";
+                this.textBox_result.Text = "Result:" 
+                    + response.GetSearchResultResult.ErrorCode 
+                    + response.GetSearchResultResult.ErrorInfo + "\r\n"
+                    + "count:" + response.GetSearchResultResult.Value.ToString() + "\r\n";
 
-                if (ret.searchresults.Length > 0)
+                if (response.searchresults.Length > 0)
                 {
                     StringBuilder browse = new StringBuilder();
-                    foreach (Record record in ret.searchresults)
+                    foreach (Record record in response.searchresults)
                     {
                         browse.AppendLine( string.Join(",", record.Cols));
                     }
@@ -278,11 +286,12 @@ namespace practice
             RestChannel channel = this.GetChannel();
             try
             {
-                GetBiblioInfoResponse ret = channel.GetBiblioInfo(this.GetBiblioInfo_textBox_BiblioRecPath.Text,
+                GetBiblioInfoResponse response = channel.GetBiblioInfo(this.GetBiblioInfo_textBox_BiblioRecPath.Text,
                     this.GetBiblioInfo_textBox_BiblioType.Text);
 
-                this.textBox_result.Text = "Result:" + ret.GetBiblioInfoResult.ErrorCode + ret.GetBiblioInfoResult.ErrorInfo + "\r\n"
-                    + ret.strBiblio;
+                this.textBox_result.Text = "Result:" + response.GetBiblioInfoResult.ErrorCode 
+                    + response.GetBiblioInfoResult.ErrorInfo + "\r\n"
+                    + response.strBiblio;
 
                
             }
@@ -304,7 +313,7 @@ namespace practice
             RestChannel channel = this.GetChannel();
             try
             {
-                SearchBiblioResponse ret = channel.SearchBiblio(this.SearchBiblio_textBox_BiblioDbNames.Text,
+                SearchBiblioResponse response = channel.SearchBiblio(this.SearchBiblio_textBox_BiblioDbNames.Text,
                     this.SearchBiblio_textBox_QueryWord.Text,
                     Convert.ToInt32(this.SearchBiblio_textBox_PerMax.Text),
                     this.SearchBiblio_textBox_FromStyle.Text,
@@ -312,9 +321,11 @@ namespace practice
                     this.SearchBiblio_textBox_ResultSetName.Text,
                     this.SearchBiblio_textBox_SearchStyle.Text); ;
 
-                this.textBox_result.Text = "Result:" + ret.SearchBiblioResult.ErrorCode + ret.SearchBiblioResult.ErrorInfo + "\r\n"
-                    + "count:" + ret.SearchBiblioResult.Value.ToString() + "\r\n"
-                    + ret.strQueryXml;
+                this.textBox_result.Text = "Result:"
+                    + response.SearchBiblioResult.ErrorCode 
+                    + response.SearchBiblioResult.ErrorInfo + "\r\n"
+                    + "count:" + response.SearchBiblioResult.Value.ToString() + "\r\n"
+                    + response.strQueryXml;
             }
             finally
             {

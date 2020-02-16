@@ -164,10 +164,10 @@ namespace DigitalPlatform.RestClient
             }
             _loginCount++;
 
-            LoginResponse lRet = this.Login(e.UserName,
+            LoginResponse response = this.Login(e.UserName,
                 e.Password,
                 e.Parameters);
-            if (lRet.LoginResult.Value == -1 || lRet.LoginResult.Value == 0)
+            if (response.LoginResult.Value == -1 || response.LoginResult.Value == 0)
             {
                 if (String.IsNullOrEmpty(strMessage) == false)
                     e.ErrorInfo = strMessage + "\r\n\r\n首次自动登录报错: ";
