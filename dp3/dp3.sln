@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalPlatform.Interfaces"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRestLibrary", "TestRestLibrary\TestRestLibrary.csproj", "{A09C78BA-073D-4512-AB35-84252387F1A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testEFCore", "testEFCore\testEFCore.csproj", "{F4565B33-F0E0-479B-AAF2-C4F6300D451A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,14 @@ Global
 		{A09C78BA-073D-4512-AB35-84252387F1A2}.Release|Any CPU.ActiveCfg = Release|x86
 		{A09C78BA-073D-4512-AB35-84252387F1A2}.Release|x86.ActiveCfg = Release|x86
 		{A09C78BA-073D-4512-AB35-84252387F1A2}.Release|x86.Build.0 = Release|x86
+		{F4565B33-F0E0-479B-AAF2-C4F6300D451A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4565B33-F0E0-479B-AAF2-C4F6300D451A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4565B33-F0E0-479B-AAF2-C4F6300D451A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F4565B33-F0E0-479B-AAF2-C4F6300D451A}.Debug|x86.Build.0 = Debug|Any CPU
+		{F4565B33-F0E0-479B-AAF2-C4F6300D451A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4565B33-F0E0-479B-AAF2-C4F6300D451A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4565B33-F0E0-479B-AAF2-C4F6300D451A}.Release|x86.ActiveCfg = Release|Any CPU
+		{F4565B33-F0E0-479B-AAF2-C4F6300D451A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
