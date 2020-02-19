@@ -43,8 +43,6 @@ namespace testEFCore
 
             //Create the database tables defined in SimpleDataStorage
             this._dbclient.Database.Migrate();
-
-            //this._dbclient.Remove(Cat);
         }
 
         /// <summary>
