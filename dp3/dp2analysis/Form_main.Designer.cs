@@ -41,6 +41,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件ToolStripMenuItem});
@@ -56,13 +57,13 @@
             this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dp2服务器配置ToolStripMenuItem});
             this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
-            this.文件ToolStripMenuItem.Size = new System.Drawing.Size(58, 28);
+            this.文件ToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
             this.文件ToolStripMenuItem.Text = "帮助";
             // 
             // dp2服务器配置ToolStripMenuItem
             // 
             this.dp2服务器配置ToolStripMenuItem.Name = "dp2服务器配置ToolStripMenuItem";
-            this.dp2服务器配置ToolStripMenuItem.Size = new System.Drawing.Size(217, 30);
+            this.dp2服务器配置ToolStripMenuItem.Size = new System.Drawing.Size(235, 34);
             this.dp2服务器配置ToolStripMenuItem.Text = "dp2服务器配置";
             this.dp2服务器配置ToolStripMenuItem.Click += new System.EventHandler(this.dp2服务器配置ToolStripMenuItem_Click);
             // 

@@ -65,6 +65,15 @@ namespace testEFCore
         private void button_addCat_Click(object sender, EventArgs e)
         {
             this.AddCate();
+
+
+            for (int i = 0; i < 10; i++)
+            {
+                this._dbclient.Dogs.Add(new Dog() { Age = "dog" + i });
+            }
+            this._dbclient.SaveChanges(true);
+
+            MessageBox.Show(this, "ok");
         }
 
         private void button_getCat_Click(object sender, EventArgs e)
@@ -77,6 +86,14 @@ namespace testEFCore
             {
                 text += cat.Id + "--" + cat.Name + "\r\n";
             }
+
+            text += "===\r\n";
+            List<Dog> dogs = this._dbclient.Dogs.ToList();
+            foreach (Dog dog in dogs )
+            {
+                text += dog.Id + "--" + dog.Age+ "\r\n";
+            }
+
             MessageBox.Show(this, text);
         }
     }
